@@ -877,10 +877,10 @@ function TreeMap(htmlID) {
         // } else {
             nodes = treemap.nodes(d);
         // }
-        d._children.forEach(function (c) {
-            c.x += prevx;
-            c.y += prevy;
-        });
+        // d._children.forEach(function (c) {
+        //     c.x += prevx;
+        //     c.y += prevy;
+        // });
 
         var node = selection.selectAll(".node")
            .data(nodes, function (d) {
