@@ -1,20 +1,18 @@
 # PhotoTreemap
 
-A library for displaying groups of photos with statistics on a Treemap.
+A library for displaying groups of photos with statistics on a TreeMap.
 
-## Usage
+# Usage
 
-To start using the PhotoTreemap you will need in your HTML a target element and to import the following files: [PhotoTreeMap.js](https://www.google.com), [ShannonEntropy.js](https://www.google.com), [d3.v3.js](http://d3js.org/d3.v3.min.js) and [jquery-3.3.1.js](https://code.jquery.com/jquery-3.3.1.min.js)
-TODO:Fix links
+To start using the PhotoTreeMap you will need in your HTML a target element and to import the following files: [PhotoTreeMap.js](https://cdn.rawgit.com/john-guerra/photoTreemap/master/source/PhotoTreeMap.js), [ShannonEntropy.js](https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/ShannonEntropy.js), [d3.v3.js](http://d3js.org/d3.v3.min.js) and [jquery-3.3.1.js](https://code.jquery.com/jquery-3.3.1.min.js)
 
-###Example
+##Example
 ```html
-TODO:Fix links
   <div id="target"></div>
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="../../source/ShannonEntropy.js"></script>
-  <script src="../../source/PhotoTreeMap.js"></script>
+  <script src="https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/ShannonEntropy.js"></script>
+  <script src="https://cdn.rawgit.com/john-guerra/photoTreemap/master/source/PhotoTreeMap.js"></script>
 ```
 
 Before create the PhotoTreeMap you need to create the Hierarchy to display. A Hierarchy is the root Node of the tree, each Node must have at least the following properties:
@@ -25,7 +23,7 @@ Before create the PhotoTreeMap you need to create the Hierarchy to display. A Hi
 In addition, the leaves or the nodes which represents a category must to have the property img.
 * img \<Strig> : Source of the image.
 
-###Example
+##Example
 ```javascript
 // Root Node of the Hierarchy
 const root = {
@@ -60,7 +58,7 @@ Now you will need to create a new TreeMap and set up it. All possible configurat
 Bind the data with the PhotoTreeMap by calling the update function and send as param the root of the hierarchy to display.
 update (root \<Hierarchy>) : Bind the hierarchy with the PhotoTreeMap.
 
-###Example
+##Example
 ```javascript
 // Create photoTreemap
 let photoTreemap = new TreeMap("#target");
@@ -77,7 +75,7 @@ photoTreemap.labelValue("value").padding(function (d) { return 10; });
 photoTreemap.update(root);
 ```
 Finally, you need to define a proper style for the PhotoTreeMap.
-###Example
+##Example
 ```css
 .node {
       line-height: 1;
