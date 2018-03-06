@@ -64,15 +64,18 @@ update (root \<Hierarchy>) : Bind the hierarchy with the PhotoTreeMap.
 
 ```javascript
 // Create a new photoTreemap and setup
-let photoTreemap = new TreeMap("#target")
-photoTreemap.height = 600;
-photoTreemap.width = 600;
-photoTreemap.chainedAnimations = false;
-photoTreemap.animationDuration = 0;
-photoTreemap.zoomable = true;
-photoTreemap.init();
+let photoTreemap = new TreeMap("#target");
+photoTreemap
+  .height(600)
+  .width(600)
+  .chainedAnimations(false)
+  .animationDuration(0)
+  .zoomable(true)
+  .init();
 
-photoTreemap.labelValue("value").padding(function (d) { return 10; });
+photoTreemap.labelValue("value").padding(function (d) {
+  return 10;
+});
 // Add data to the tree
 photoTreemap.update(root);
 ```
