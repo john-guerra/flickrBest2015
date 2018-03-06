@@ -9,6 +9,7 @@
       background-color: white;
       z-index: -1;
     }
+
     .node {
       line-height: 1;
       overflow: hidden;
@@ -19,10 +20,12 @@
       border-radius: 5px;
       box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.50);
     }
+
     .node.leaf {
       border-radius: 0;
       box-shadow: none;
     }
+
     .nodeText {
       width: 100%;
       background: rgba(51, 51, 51, 0.37);
@@ -30,29 +33,35 @@
       color: #FFFFFF;
       line-height: 16px;
     }
+
     .showAllLabels .nodeText {
       visibility: visible;
     }
+
     .nodeText img {
       /*width: 15px;*/
       height: 10px;
       pointer-events: none;
       margin-top: 2px;
     }
+
     .nodeTextTitle {
       height: 20px;
       font-family: Arial-BoldMT;
       font-size: 10pt;
       overflow: hidden;
     }
+
     .nodeTextValue {
       font-family: Arial;
       font-size: 10pt;
     }
+
     .node:hover .nodeText {
       opacity: 1.0;
       visibility: visible;
     }
+
     .nodeBG {
       /*z-index: -1;*/
       opacity: 1.0;
@@ -67,14 +76,17 @@
       background-repeat: no-repeat;
       background-position: center;
     }
+
     .node.leaf:hover {
       cursor: pointer;
     }
+
     .node.leaf:hover .nodeBG {
       border-color: steelblue;
       border-style: solid;
       border-width: 2px;
     }
+
     .node.leaf:hover {
       z-index: 10;
     }
@@ -110,12 +122,13 @@
   };
 
   let photoTreemap = new TreeMap("#target");
-  photoTreemap.height = 600;
-  photoTreemap.width = 600;
-  photoTreemap.chainedAnimations = false;
-  photoTreemap.animationDuration = 0;
-  photoTreemap.zoomable = true;
-  photoTreemap.init();
+  photoTreemap
+    .height(600)
+    .width(600)
+    .chainedAnimations(false)
+    .animationDuration(0)
+    .zoomable(true)
+    .init();
 
   photoTreemap.labelValue("value").padding(function (d) {
     return 10;

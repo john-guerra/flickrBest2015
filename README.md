@@ -6,7 +6,8 @@ A library for displaying groups of photos with statistics on a TreeMap.
 
 To start using the PhotoTreeMap you will need in your HTML a target element and to import the following files: [PhotoTreeMap.js](https://cdn.rawgit.com/john-guerra/photoTreemap/master/source/PhotoTreeMap.js), [ShannonEntropy.js](https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/ShannonEntropy.js), [d3.v3.js](http://d3js.org/d3.v3.min.js) and [jquery-3.3.1.js](https://code.jquery.com/jquery-3.3.1.min.js)
 
-##Example
+## Example
+
 ```html
   <div id="target"></div>
   <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -23,7 +24,8 @@ Before create the PhotoTreeMap you need to create the Hierarchy to display. A Hi
 In addition, the leaves or the nodes which represents a category must to have the property img.
 * img \<Strig> : Source of the image.
 
-##Example
+## Example
+
 ```javascript
 // Root Node of the Hierarchy
 const root = {
@@ -47,7 +49,7 @@ const root = {
 };
 ```
 
-Now you will need to create a new TreeMap and set up it. All possible configurations are applicable using a chaining approach, so each function return the PhotoTreeMap itself. All functions (configurations) are listed below:
+Now you will need to create a new TreeMap and setup it. All possible configurations are applicable using a chaining approach, so each function return the PhotoTreeMap itself. All functions (configurations) are listed below:
 * height (height \<Number>)  : Set the height in pixels of the PhotoTreeMap 
 * width (width \<Number>)  : Set the width in pixels of the PhotoTreeMap
 * chainedAnimations (enabled \<Boolean>) : Allows the PhotoTreeMap to chain its animations.
@@ -58,11 +60,11 @@ Now you will need to create a new TreeMap and set up it. All possible configurat
 Bind the data with the PhotoTreeMap by calling the update function and send as param the root of the hierarchy to display.
 update (root \<Hierarchy>) : Bind the hierarchy with the PhotoTreeMap.
 
-##Example
+## Example
+
 ```javascript
-// Create photoTreemap
-let photoTreemap = new TreeMap("#target");
-// Set up
+// Create a new photoTreemap and setup
+let photoTreemap = new TreeMap("#target")
 photoTreemap.height = 600;
 photoTreemap.width = 600;
 photoTreemap.chainedAnimations = false;
@@ -75,7 +77,9 @@ photoTreemap.labelValue("value").padding(function (d) { return 10; });
 photoTreemap.update(root);
 ```
 Finally, you need to define a proper style for the PhotoTreeMap.
-##Example
+
+## Example
+
 ```css
 .node {
       line-height: 1;
