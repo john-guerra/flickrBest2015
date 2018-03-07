@@ -4,12 +4,6 @@
   <meta charset="UTF-8">
   <title>PhotoTreeMap basic example</title>
   <style>
-    #spinnerBG {
-      opacity: 0.9;
-      background-color: white;
-      z-index: -1;
-    }
-
     .node {
       line-height: 1;
       overflow: hidden;
@@ -17,15 +11,8 @@
       text-indent: 2px;
       background-repeat: no-repeat;
       background-position: center;
-      border-radius: 5px;
       box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.50);
     }
-
-    .node.leaf {
-      border-radius: 0;
-      box-shadow: none;
-    }
-
     .nodeText {
       width: 100%;
       background: rgba(51, 51, 51, 0.37);
@@ -33,35 +20,20 @@
       color: #FFFFFF;
       line-height: 16px;
     }
-
-    .showAllLabels .nodeText {
-      visibility: visible;
-    }
-
-    .nodeText img {
-      /*width: 15px;*/
-      height: 10px;
-      pointer-events: none;
-      margin-top: 2px;
-    }
-
     .nodeTextTitle {
       height: 20px;
       font-family: Arial-BoldMT;
       font-size: 10pt;
       overflow: hidden;
     }
-
     .nodeTextValue {
       font-family: Arial;
       font-size: 10pt;
     }
-
-    .node:hover .nodeText {
-      opacity: 1.0;
-      visibility: visible;
+    .node.leaf {
+      border-radius: 0;
+      box-shadow: none;
     }
-
     .nodeBG {
       /*z-index: -1;*/
       opacity: 1.0;
@@ -76,49 +48,78 @@
       background-repeat: no-repeat;
       background-position: center;
     }
-
+    .showAllLabels .nodeText {
+      visibility: visible;
+    }
+    .node:hover .nodeText {
+      opacity: 1.0;
+      visibility: visible;
+    }
     .node.leaf:hover {
       cursor: pointer;
     }
-
     .node.leaf:hover .nodeBG {
       border-color: steelblue;
       border-style: solid;
       border-width: 2px;
     }
-
     .node.leaf:hover {
       z-index: 10;
     }
   </style>
 </head>
 <body>
-
+<div id="breadcrumbs"></div>
 <div id="target"></div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="../../source/ShannonEntropy.js"></script>
 <script src="../../source/PhotoTreeMap.js"></script>
 <script>
-  var root = {
+  const root = {
     id: "root",
+    value: 120,
+    label:'LabelRoot',
     children: [
-      {id: "Children1", img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/3fee8b7eb40ba438c02bedffe74eb197/5B2D3365/t51.2885-15/e35/26072072_205501003340388_8879725742087208960_n.jpg", value: 10},
-      {id: "Children2", img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/3fee8b7eb40ba438c02bedffe74eb197/5B2D3365/t51.2885-15/e35/26072072_205501003340388_8879725742087208960_n.jpg", value: 10},
-
-      {id: "Children3", img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/3fee8b7eb40ba438c02bedffe74eb197/5B2D3365/t51.2885-15/e35/26072072_205501003340388_8879725742087208960_n.jpg", value: 50},
       {
-        id: "more",
-        children: [
-          {id: "Children4", img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/4c06e947198a45daf087f9a6c8ea3d2c/5B103BC9/t51.2885-15/e35/25010558_961562707324535_8861611580077375488_n.jpg", value: 25},
-          {id: "Children5", img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/4c06e947198a45daf087f9a6c8ea3d2c/5B103BC9/t51.2885-15/e35/25010558_961562707324535_8861611580077375488_n.jpg", value: 25},
-        ],
+        id: "Children1",
+        value: 10,
+        label:'Label1',
+        img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/3fee8b7eb40ba438c02bedffe74eb197/5B2D3365/t51.2885-15/e35/26072072_205501003340388_8879725742087208960_n.jpg",
+      },
+      {
+        id: "Children2",
+        value: 10,
+        label:'Label2',
+        img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/3fee8b7eb40ba438c02bedffe74eb197/5B2D3365/t51.2885-15/e35/26072072_205501003340388_8879725742087208960_n.jpg",
+      },
+      {
+        id: "Children3",
         value: 50,
+        label:'Label3',
+        img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/3fee8b7eb40ba438c02bedffe74eb197/5B2D3365/t51.2885-15/e35/26072072_205501003340388_8879725742087208960_n.jpg",
+      },
+      {
+        id: "Children4",
+        value: 50,
+        label:'Label4',
         img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/4c06e947198a45daf087f9a6c8ea3d2c/5B103BC9/t51.2885-15/e35/25010558_961562707324535_8861611580077375488_n.jpg",
+        children: [
+          {
+            id: "Children5",
+            value: 25,
+            label:'Label5',
+            img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/4c06e947198a45daf087f9a6c8ea3d2c/5B103BC9/t51.2885-15/e35/25010558_961562707324535_8861611580077375488_n.jpg"
+          },
+          {
+            id: "Children6",
+            value: 25,
+            label:'Label6',
+            img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/4c06e947198a45daf087f9a6c8ea3d2c/5B103BC9/t51.2885-15/e35/25010558_961562707324535_8861611580077375488_n.jpg"
+          },
+        ],
       }
-
     ],
-    value: 10
   };
 
   let photoTreemap = new TreeMap("#target");
@@ -128,13 +129,10 @@
     .chainedAnimations(false)
     .animationDuration(0)
     .zoomable(true)
-    .init();
-
-  photoTreemap.labelValue("value").padding(function (d) {
-    return 10;
-  });
-  photoTreemap.update(root);
-
+    .breadCrumsHtmlID('#breadcrumbs')
+    .padding(0)
+    .init()
+    .update(root);
 </script>
 </body>
 </html>

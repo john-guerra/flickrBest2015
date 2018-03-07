@@ -370,20 +370,11 @@
             .padding(function (d) { return d.children || d._children ? 8 : 0; })
             .sort("numChildren");
         treeMap.height = treeMapHeight;
-
         treeMap.zoomable = zoomable;
-
-        showLabels != zoomable;
-
         treeMap.chainedAnimations = false;
         treeMap.animationDuration = 0;
-
-
         treeMap.init();
-
-
         window.onresize = onResize;
-
     }
 
 

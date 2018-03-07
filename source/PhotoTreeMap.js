@@ -23,9 +23,7 @@ function TreeMap(htmlID) {
     label = "label",
     sort = value,
     showAsGrid = false,
-    padding = function () {
-      return 0;
-    },
+    padding = 0,
     filter = function (d) {
       return d;
     },
@@ -116,16 +114,19 @@ function TreeMap(htmlID) {
     width = _;
     return self;
   };
+
   self.height = function (_) {
     if (!arguments.length) return height;
     height = _;
     return self;
   };
+
   self.chainedAnimations = function (_) {
     if (!arguments.length) return chainedAnimations ;
     chainedAnimations  = _;
     return self;
   };
+
   self.animationDuration = function (_) {
     if (!arguments.length) return animationDuration ;
     animationDuration  = _;
@@ -136,7 +137,6 @@ function TreeMap(htmlID) {
   let TEXT_HEIGHT = 50;
   let MIN_SIZE_FOR_TEXT = 100;
   let ZOOM_TRANSITION_DURATION = 750;
-
   self.showPhotos = true;
   self.growable = false;
 
@@ -151,16 +151,12 @@ function TreeMap(htmlID) {
   fScale = d3.scale.linear()
     .domain([10, 30000])
     .range([0.7, 10.0]);
-
   treemap = getTreemap();
-
   self.treemap = treemap;
 
-
   function getTreemap() {
-    console.log(self);
+    // console.log(self);
     if (self.zoomable()) {
-
       if (showAsGrid) {
         return d3.layout.gridFit()
           .value(function (d) {
@@ -176,7 +172,6 @@ function TreeMap(htmlID) {
           .size([width, height])
           .ratio(1) //squares
           .round(false);
-
       } else {
         return d3.layout.treemap()
         // treemap
@@ -197,7 +192,6 @@ function TreeMap(htmlID) {
           .ratio(1)
           .round(false);
       }
-
     } else {
       if (showAsGrid) {
         return d3.layout.gridFit()
@@ -212,9 +206,7 @@ function TreeMap(htmlID) {
           })
           .size([width, height])
           .ratio(1); //squares
-
       } else {
-
         return d3.layout.treemap()
           .padding(5)
           .children(function (d) {
@@ -228,7 +220,6 @@ function TreeMap(htmlID) {
             return d3.ascending(a[sort], b[sort]);
           });
       }
-
     }
   }
 
@@ -243,7 +234,6 @@ function TreeMap(htmlID) {
   };
 
   self.init = function () {
-
     div = d3.select(htmlID).append("div")
       .attr("id", "innerTreeMap");
 
@@ -263,17 +253,14 @@ function TreeMap(htmlID) {
       .style("display", "inline")
       .style("position", "absolute");
 
-
     if (self.zoomable()) {
       // grandparent = div.append("div")
       // .attr("class", "grandparent node");
-
     }
 
     self.updateWindowSizes();
-
-
     self.loading();
+    return self;
   };
 
   self.updateWindowSizes = function () {
@@ -286,13 +273,11 @@ function TreeMap(htmlID) {
     y.domain([0, height])
       .range([0, height]);
 
-
     div.style("position", "relative")
       .style("width", (width + self.margin.left + self.margin.right) + "px")
       .style("height", (height + self.margin.top + self.margin.bottom) + "px")
       .style("left", self.margin.left + "px")
       .style("top", self.margin.top + "px");
-
 
     div.select("#spinnerBG")
       .style("width", (width ) + "px")
@@ -366,8 +351,7 @@ function TreeMap(htmlID) {
           // .duration(1000)
             .style("background-position", nodeBGPosition(d));
 
-          console.log("Node " + d.id + " quad = " + quad);
-
+          // console.log("Node " + d.id + " quad = " + quad);
         });
         // console.log(img);
       }
@@ -380,7 +364,7 @@ function TreeMap(htmlID) {
 
     end = new Date().getTime();
 
-    console.log('Computing entropies ' + node.label + ' time: ' + (end - start));
+    // console.log('Computing entropies ' + node.label + ' time: ' + (end - start));
   }
 
   self.update = function (root, _currentNode) {
@@ -431,7 +415,6 @@ function TreeMap(htmlID) {
         if (useShannon) {
           computeImageEntropies(currentNode);
         }
-
       });
 
     // nodeUpdate(node);
@@ -493,13 +476,11 @@ function TreeMap(htmlID) {
     }
   }
 
-
   function name(d) {
     return d.parent !== undefined ?
       name(d.parent) + "." + d[label] :
       d[label];
   }
-
 
   function nodeBGPosition(d) {
     if (d.quadrant === undefined) {
@@ -507,7 +488,6 @@ function TreeMap(htmlID) {
     } else {
       // console.log("QUAD");
       // console.log(d.quadrant);
-
       if (d.quadrant === 0) {
         // return "top left";
         return "33% 33%";
@@ -522,7 +502,7 @@ function TreeMap(htmlID) {
         return "66% 66%";
       } else {
         console.error("Weird quadrant = " + d.quadrant);
-        console.log(d);
+        // console.log(d);
         return "center";
       }
     }
@@ -533,16 +513,16 @@ function TreeMap(htmlID) {
     let nodeDiv = sel.enter()
       .append("div")
       .attr("class", function (d) {
-        return "node treemapNode treemapNode" + d.id;
+        return "node";
       })
       .classed("leaf", function (d) {
-        return filter(d.children) || filter(d._children) ? false : true;
+        return filter(d.children);
       })
       .attr("id", function (d) {
         return "node" + d.id;
       })
       .on("mouseover", function (d, i) {
-        console.log(d);
+        // console.log(d);
         if (filter(d.children)) { //don't hover on parents
           return;
         }
@@ -551,7 +531,7 @@ function TreeMap(htmlID) {
         } else {
           // d3.select("#albums").classed("selected", true);
           d3.select(htmlID).classed("selected", true);
-          d3.selectAll(".treemapNode" + d.id).classed("selected", true);
+          d3.selectAll("#node" + d.id).classed("selected", true);
           if (self.growable) {
             growNode(d, i, this);
           }
@@ -566,7 +546,7 @@ function TreeMap(htmlID) {
         } else {
           // d3.select("#albums").classed("selected", false);
           d3.select(htmlID).classed("selected", false);
-          d3.selectAll(".treemapNode").classed("selected", false);
+          d3.selectAll(".node").classed("selected", false);
           if (self.growable) {
             shrinkNode(d, i, this);
           }
@@ -600,7 +580,6 @@ function TreeMap(htmlID) {
               window.open(d.url, '_blank');
             }
           }
-
         }
       })
       .each(function (d) {
@@ -622,23 +601,18 @@ function TreeMap(htmlID) {
       if (filter(d.children)) {//Do not add the nodeText to the parent nodes
         return;
       }
-
       let nodeDiv = d3.select(this);
-
       nodeDiv.append("div")
         .attr("class", "nodeBG");
-
       nodeDiv.filter(showLabel)
         .call(nodeAppendText);
     });
-
     if (self.animationDuration()) {
       nodeDiv = nodeDiv.transition();
     }
     nodeDiv
       .call(position);
   } //nodeEnter
-
 
   function nodeUpdate(sel) {
     // nodeDiv.call(position);
@@ -648,13 +622,11 @@ function TreeMap(htmlID) {
     sel
     // .data(treemap.nodes)
       .classed("leaf", function (d) {
-        return filter(d.children) || filter(d._children) ? false : true;
+        return filter(d.children);
       });
-
     // if (self.animationDuration()) {
     //     sel = sel.transition();
     // }
-
     //Delete the labels from the ones that don't need it
     sel
       .filter(function (d) {
@@ -662,14 +634,11 @@ function TreeMap(htmlID) {
       })
       .select(".nodeText")
       .remove();
-
     //Append the labels to the ones that need it
     sel
       .filter(showLabel)
       .select(".nodeText")
       .remove();
-
-
     sel
       .call(position);
 
@@ -728,21 +697,17 @@ function TreeMap(htmlID) {
 
   self.jumpIntoRandom = function () {
     let options = [], i;
-
     //Treemap is not drawn yet
     if (!currentNode) {
       return;
     }
-
     //Build options with childrens and parent if they exist
     if (currentNode && currentNode.children) {
       for (i = 0; i < currentNode.children.length; i++) {
         if (currentNode.children[i]._children) {
           options.push(currentNode.children[i]);
         }
-
       }
-
     }
     if (currentNode && currentNode.parent) {
       for (i = 0; i < currentNode.children.length; i++) {
@@ -756,8 +721,8 @@ function TreeMap(htmlID) {
     let randomNode = options[randI];
 
     if (randomNode) {
-      console.log("jumpIntoRandom jump into ");
-      console.log(randomNode);
+      // console.log("jumpIntoRandom jump into ");
+      // console.log(randomNode);
       jumpInto(randomNode);
     } else {
       console.error("jumpIntoRandom couldn't find a node");
@@ -767,7 +732,6 @@ function TreeMap(htmlID) {
 
   function jumpInto(d) {
     let node = d;
-
     if (node.oldX) node.x = node.oldX;
     if (node.oldY) node.y = node.oldY;
     if (node.oldDx) node.dx = node.oldDx;
@@ -784,8 +748,8 @@ function TreeMap(htmlID) {
       node = node.parent;
     }
     currentNode = d;
-    console.log("Jump INTO ");
-    console.log(node);
+    // console.log("Jump INTO ");
+    // console.log(node);
     // console.log("jump into currentNode");
     // console.log(currentNode);
     jumpIntoHelper(node);
@@ -807,16 +771,12 @@ function TreeMap(htmlID) {
     }
     currentDepth = d.depth;
     transitioning = true;
-    console.log("Transitioning " + d.id);
+    // console.log("Transitioning " + d.id);
     // console.log(d);
-
-
     // grandparent
     //         .datum(d.parent, function (d) { return d.id; })
     //         .on("click", jumpIntoHelper)
     //         .text(name(d));
-
-
     let t1;
     if (oldDepth === undefined) {
       oldDepth = d3.selectAll(".depth");
@@ -862,7 +822,7 @@ function TreeMap(htmlID) {
       // svg.style("shape-rendering", "crispEdges");
       transitioning = false;
       //Update the image after the animation ends
-      console.log("Transition finished");
+      // console.log("Transition finished");
       // g2.call(position);
       // console.log(sel);
       if (useShannon) {
@@ -886,7 +846,6 @@ function TreeMap(htmlID) {
     let breadCrums = d3.select(breadCrumsHtmlID)
       .selectAll(".breadCrum")
       .data(pathList.reverse());
-
     breadCrums.enter()
       .append("span")
       .attr("class", "breadCrum");
@@ -898,12 +857,11 @@ function TreeMap(htmlID) {
       .each(function (d, i) {
         if (i < ( pathList.length - 1 )) {
           d3.select(this)
-            .append("img")
-            .attr("src", "img/breadCrumArrow.png")
-            .attr("class", "breadCrumArrow");
+            .append("span")
+            .attr("class", "breadCrumArrow")
+            .text(" > ")
         }
       });
-
 
     breadCrums.exit()
       .remove();
@@ -912,11 +870,8 @@ function TreeMap(htmlID) {
   let updateHelper = function (d, selection, doUpdate) {
     transitioning = false;
     self.currentRoot = d;
-
     drawBreadCrum(d);
-
     doUpdate = doUpdate === undefined ? true : doUpdate;
-
     d3.select("body").on("keydown", function (e) {
       if (self.zoomable() && d3.event.keyCode === 27) {
         jumpInto(self.currentRoot.parent !== undefined ? self.currentRoot.parent : self.root);
@@ -941,7 +896,6 @@ function TreeMap(htmlID) {
         selection = div;
       }
     }
-
 
     let nodes;
     treemap.size([d.dx, d.dy]);
@@ -1018,7 +972,6 @@ function TreeMap(htmlID) {
 
     let ratio = width / height;
 
-
     // if (n.dx > width) {
     //     width = n.dx;
     //     height = width/ratio;
@@ -1038,12 +991,10 @@ function TreeMap(htmlID) {
     // n.x = n.oldX - (n.dx - n.oldDx) / 2;
     // n.y = n.oldY - (n.dy - n.oldDy) / 2;
 
-
     d3.select(ele)
       .transition()
       .delay(100)
       .call(position);
-
   }
 
   //Animate a node to make it shrink back to normal
@@ -1054,10 +1005,8 @@ function TreeMap(htmlID) {
     n.x = n.oldX;
     n.y = n.oldY;
     n.oldX = n.oldY = n.oldDx = n.oldDy = undefined;
-
     d3.select(ele).transition().call(position);
   }
-
 
   let updateImg = function (sel) {
     // console.log("updateImg");
@@ -1096,19 +1045,17 @@ function TreeMap(htmlID) {
 
     //After transition if any
     sel
-    //After transition if any
-    sel
       .style("left", function (d) {
-        return x(d.x) + padding(d) + "px";
+        return x(d.x) + self.padding() + "px";
       })
       .style("top", function (d) {
-        return y(d.y) + padding(d) + "px";
+        return y(d.y) + self.padding() + "px";
       })
       .style("width", function (d) {
-        return x(d.x + Math.max(0, d.dx)) - x(d.x) - padding(d) + "px";
+        return x(d.x + Math.max(0, d.dx)) - x(d.x) - self.padding() + "px";
       })
       .style("height", function (d) {
-        return y(d.y + Math.max(0, d.dy)) - y(d.y) - padding(d) + "px";
+        return y(d.y + Math.max(0, d.dy)) - y(d.y) - self.padding() + "px";
       });
     sel.select(".nodeBG")
     // .style("background-size", function (d) {
@@ -1140,11 +1087,8 @@ function TreeMap(htmlID) {
           return (y(d.y + d.dy) - y(d.y) - TEXT_HEIGHT) + "px";
         });
     }
-
-
     // sel.select(".nodeTextTitle")
     //     .style("width", function(d) { return  x(d.x + d.dx) - x(d.x) + "px"; });
-
     updateImg(originalSel);
   };
 
@@ -1152,4 +1096,3 @@ function TreeMap(htmlID) {
   self.nodePosition = position;
   return self;
 }
-
