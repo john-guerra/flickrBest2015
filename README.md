@@ -9,8 +9,10 @@ To start using the PhotoTreeMap you will need in your HTML a target element to d
 ## Example
 
 ```html
-  <div id="breadcrumbs"></div>
-  <div id="target"></div>
+  <div class="mainContainer">
+    <div id="breadcrumbs"></div>
+    <div id="target"></div>
+  </div>
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/ShannonEntropy.js"></script>
@@ -34,46 +36,46 @@ In addition, the leaves or the nodes which represents a category must to have th
 
 ```javascript
 // Root Node of the Hierarchy
-const root = {
+ const root = {
     id: "root",
     value: 120,
-    label:'LabelRoot',
+    label:'Animals',
     children: [
       {
         id: "Children1",
         value: 10,
-        label:'Label1',
-        img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/3fee8b7eb40ba438c02bedffe74eb197/5B2D3365/t51.2885-15/e35/26072072_205501003340388_8879725742087208960_n.jpg",
+        label:'Fish',
+        img: "https://images.unsplash.com/photo-1513570050319-4797c2aef25e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9a0e774d1c6dc64d2db999ac99fd5dd0&auto=format&fit=crop&w=1079&q=80",
       },
       {
         id: "Children2",
         value: 10,
-        label:'Label2',
-        img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/3fee8b7eb40ba438c02bedffe74eb197/5B2D3365/t51.2885-15/e35/26072072_205501003340388_8879725742087208960_n.jpg",
+        label:'Bug',
+        img: "https://images.unsplash.com/photo-1519167734660-d1a18d66190b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cfde3f91a1c44c82fc604ffc2bf5af19&auto=format&fit=crop&w=1049&q=80",
       },
       {
         id: "Children3",
         value: 50,
-        label:'Label3',
-        img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/3fee8b7eb40ba438c02bedffe74eb197/5B2D3365/t51.2885-15/e35/26072072_205501003340388_8879725742087208960_n.jpg",
+        label:'Bird',
+        img: "https://images.unsplash.com/photo-1482330625994-3bb3c90a5d05?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e0ead9e00f1af258d880308b9a0af37b&auto=format&fit=crop&w=1052&q=80",
       },
       {
         id: "Children4",
         value: 50,
-        label:'Label4',
-        img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/4c06e947198a45daf087f9a6c8ea3d2c/5B103BC9/t51.2885-15/e35/25010558_961562707324535_8861611580077375488_n.jpg",
+        label:'Felines',
+        img: "https://images.unsplash.com/photo-1507984211203-76701d7bb120?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=eacbf50fac29a13afba26ad7499cedee&auto=format&fit=crop&w=1052&q=80",
         children: [
           {
             id: "Children5",
-            value: 25,
-            label:'Label5',
-            img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/4c06e947198a45daf087f9a6c8ea3d2c/5B103BC9/t51.2885-15/e35/25010558_961562707324535_8861611580077375488_n.jpg"
+            value: 20,
+            label:'Cat',
+            img: "https://images.unsplash.com/photo-1507984211203-76701d7bb120?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=eacbf50fac29a13afba26ad7499cedee&auto=format&fit=crop&w=1052&q=80"
           },
           {
             id: "Children6",
-            value: 25,
-            label:'Label6',
-            img: "https://instagram.fbog4-1.fna.fbcdn.net/vp/4c06e947198a45daf087f9a6c8ea3d2c/5B103BC9/t51.2885-15/e35/25010558_961562707324535_8861611580077375488_n.jpg"
+            value: 30,
+            label:'Tiger',
+            img: "https://images.unsplash.com/photo-1501705388883-4ed8a543392c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9da9e3aa07ca3d4d09a08ec168815d68&auto=format&fit=crop&w=1050&q=80"
           },
         ],
       }
@@ -88,7 +90,7 @@ Now you will need to create a new TreeMap and setup it. All possible configurati
 * animationDuration (duration \<Number>) : Set the duration of the animations.
 * zoomable (enabled \<Boolean>) : Allows the PhotoTreeMap to be zoomable.
 * padding (padding \<Number>) : Set the padding in pixels of the PhotoTreeMap.
-* breadCrumsHtmlID (ID <String>) : ID of the element in which will be displayed the breadcrumbs.
+* breadCrumsHtmlID (ID \<String>) : ID of the element in which will be displayed the breadcrumbs.
 
 Bind the data with the PhotoTreeMap by calling the update function and send as param the root of the hierarchy to display.
 update (root \<Hierarchy>) : Bind the hierarchy with the PhotoTreeMap.
@@ -104,8 +106,8 @@ let photoTreemap = new TreeMap("#target");
     .chainedAnimations(false)
     .animationDuration(0)
     .zoomable(true)
-    .padding(0)
     .breadCrumsHtmlID('#breadcrumbs')
+    .padding(5)
     .init()
     .update(root);
 ```
@@ -175,5 +177,10 @@ Finally, you need to define a proper style for the PhotoTreeMap. In order to do 
 }
 .node.leaf:hover {
   z-index: 10;
+}
+.mainContainer{
+      width: fit-content;
+      height: fit-content;
+      margin: auto;
 }
 ```
