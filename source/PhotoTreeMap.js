@@ -4,8 +4,8 @@
 function TreeMap(htmlID) {
   "use strict";
   let self = this,
-    width,
-    height,
+    width = window.innerWidth/2,
+    height = window.innerHeight/2,
     color = d3.scale.category20c(),
     treemap,
     fScale,
@@ -32,7 +32,7 @@ function TreeMap(htmlID) {
     useShannon = false,
     dImgQuadrants = new d3.map(),
     chainedAnimations = true,
-    animationDuration = 750,
+    animationDuration = 0,
     zoomable = false;
 
   self.margin = {top: 0, right: 0, bottom: 0, left: 0};
@@ -420,6 +420,7 @@ function TreeMap(htmlID) {
     // nodeUpdate(node);
     // jumpInto(self.root);
     // jumpInto(currentNode);
+    return self;
   };
 
   function initialize(root) {
@@ -1094,5 +1095,7 @@ function TreeMap(htmlID) {
 
   self.jumpInto = jumpInto;
   self.nodePosition = position;
+
+  self.init();
   return self;
 }

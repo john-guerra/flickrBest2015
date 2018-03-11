@@ -4,9 +4,10 @@ A library for displaying groups of photos with statistics on a TreeMap.
 
 # Usage
 
+### Import
 To start using the PhotoTreeMap you will need in your HTML a target element to display the tree, a target element to display the breadcrumbs and to import the following files: [PhotoTreeMap.js](https://cdn.rawgit.com/john-guerra/photoTreemap/master/source/PhotoTreeMap.js), [ShannonEntropy.js](https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/ShannonEntropy.js), [d3.v3.js](http://d3js.org/d3.v3.min.js) and [jquery-3.3.1.js](https://code.jquery.com/jquery-3.3.1.min.js)
 
-## Example
+### Import Example
 
 ```html
   <div class="mainContainer">
@@ -15,10 +16,10 @@ To start using the PhotoTreeMap you will need in your HTML a target element to d
   </div>
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/ShannonEntropy.js"></script>
+  <script src="https://cdn.rawgit.com/john-guerra/photoTreemap/master/source/ShannonEntropy.js"></script>
   <script src="https://cdn.rawgit.com/john-guerra/photoTreemap/master/source/PhotoTreeMap.js"></script>
 ```
-
+## Hierarchy
 Before create the PhotoTreeMap you need to create the Hierarchy to display. A Hierarchy is the root Node of the tree, each Node must have at least the following properties:
 * id \<String> : ID of the node.
 * value \<Number> : Value of the node, this will be used to sort the nodes and they will be displayed depending on it.
@@ -32,7 +33,7 @@ In addition, the leaves or the nodes which represents a category must to have th
 
 * img \<Strig> : Source of the image of the Node, the root Node should not have img.
 
-## Example
+### Hierarchy Example
 
 ```javascript
 // Root Node of the Hierarchy
@@ -82,38 +83,34 @@ In addition, the leaves or the nodes which represents a category must to have th
     ],
   };
 ```
+## Setup
 
-Now you will need to create a new TreeMap and setup it. All possible configurations are applicable using a chaining approach, so each function return the PhotoTreeMap itself. All functions (configurations) are listed below:
+Now you will need to create a new TreeMap and setup it. All possible configurations are applicable using a chaining approach, so each function return the PhotoTreeMap itself. All functions (configurations) are optional and listed below:
+* breadCrumsHtmlID (ID \<String>) : ID of the element in which will be displayed the breadcrumbs.
+* zoomable (enabled \<Boolean>) : Allows the PhotoTreeMap to be zoomable. If it is false, all the images will be showed at the same time.
 * height (height \<Number>)  : Set the height in pixels of the PhotoTreeMap. 
 * width (width \<Number>)  : Set the width in pixels of the PhotoTreeMap.
 * chainedAnimations (enabled \<Boolean>) : Allows the PhotoTreeMap to chain its animations.
 * animationDuration (duration \<Number>) : Set the duration of the animations.
-* zoomable (enabled \<Boolean>) : Allows the PhotoTreeMap to be zoomable.
 * padding (padding \<Number>) : Set the padding in pixels of the PhotoTreeMap.
-* breadCrumsHtmlID (ID \<String>) : ID of the element in which will be displayed the breadcrumbs.
 
-Bind the data with the PhotoTreeMap by calling the update function and send as param the root of the hierarchy to display.
-update (root \<Hierarchy>) : Bind the hierarchy with the PhotoTreeMap.
+Finally, bind the data with the PhotoTreeMap by calling the update function and send as param the root of the hierarchy to display.
+* update (root \<Hierarchy>) : Bind the hierarchy with the PhotoTreeMap.
 
-## Example
+## Setup Example
 
 ```javascript
-// Create a new photoTreemap, setup and finally add data to the PhotoTreeMap
-let photoTreemap = new TreeMap("#target");
-  photoTreemap
-    .height(600)
-    .width(600)
-    .chainedAnimations(false)
-    .animationDuration(0)
-    .zoomable(true)
+// Create a new photoTreemap, setup and finally add the data
+let photoTreemap = new TreeMap("#target")
     .breadCrumsHtmlID('#breadcrumbs')
-    .padding(5)
-    .init()
+    .zoomable(true)
     .update(root);
 ```
+
+## Styles
 Finally, you need to define a proper style for the PhotoTreeMap. In order to do it, you should define styles for .node, .leaf, .nodeText, .nodeTextTitle, .nodeTextValue and .nodeBG. 
 
-## Example
+## Styles Example
 
 ```css
 .node {
