@@ -517,7 +517,7 @@ function TreeMap(htmlID) {
         return "node";
       })
       .classed("leaf", function (d) {
-        return filter(d.children);
+        return !d._children;
       })
       .attr("id", function (d) {
         return "node" + d.id;
@@ -594,9 +594,10 @@ function TreeMap(htmlID) {
       .style("width", "0px")
       .style("height", "0px");
 
-    nodeDiv.filter(showLabel).attr("title", function (d) {
-      return d[label] + "\n" + d[labelValue];
-    });
+    //Tooltip
+    // nodeDiv.filter(showLabel).attr("title", function (d) {
+    //   return d[label] + "\n" + d[labelValue];
+    // });
 
     nodeDiv.each(function (d) {
       if (filter(d.children)) {//Do not add the nodeText to the parent nodes
@@ -680,15 +681,13 @@ function TreeMap(htmlID) {
       //     return d.children ? null : fScale(d[value]) + "em";
       // })
       .append("span")
-      .attr("class", "nodeTextContainer")
-      .append("div")
       .attr("class", "nodeTextTitle")
       .html(function (d) {
         // return filter(d.children) ? null : d[label];
         return d[label];
       });
-    sel.select(".nodeTextContainer")
-      .append("div")
+    sel.select(".nodeText")
+      .append("span")
       .attr("class", "nodeTextValue")
       .html(function (d) {
         // return filter(d.children) ? null : d[labelValue];
@@ -1067,18 +1066,18 @@ function TreeMap(htmlID) {
       });
 
     sel.select(".nodeText")
-      .style("position", "relative");
+      // .style("position", "relative");
     // .style("visibility", function (d) { return  (d.dx < MIN_SIZE_FOR_TEXT) ? "hidden" : "visible"; })
     // .style("left", function(d) { return (x(d.x + d.dx) - x(d.x) / 2)  + "px"; })
 
     if (self.zoomable()) {
       sel.select(".nodeText")
-        .style("left", function (d) {
-          return 0 + "px";
-        })
-        .style("top", function (d) {
-          return (y(d.y + d.dy) - y(d.y) - TEXT_HEIGHT ) / 2 + "px";
-        });
+        // .style("left", function (d) {
+        //   return 0 + "px";
+        // })
+        // .style("top", function (d) {
+        //   return (y(d.y + d.dy) - y(d.y) - TEXT_HEIGHT ) / 2 + "px";
+        // });
     } else {
       sel.select(".nodeText")
         .style("left", function (d) {

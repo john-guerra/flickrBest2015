@@ -3,86 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>PhotoTreeMap basic example</title>
-  <style>
-    .node {
-      line-height: 1;
-      overflow: hidden;
-      position: absolute;
-      text-indent: 2px;
-      background-repeat: no-repeat;
-      background-position: center;
-      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.50);
-    }
-
-    .nodeText {
-      width: 100%;
-      background: rgba(51, 51, 51, 0.37);
-      font-size: 14px;
-      color: #FFFFFF;
-      line-height: 16px;
-    }
-
-    .nodeTextTitle {
-      height: 20px;
-      font-family: Arial-BoldMT;
-      font-size: 10pt;
-      overflow: hidden;
-    }
-
-    .nodeTextValue {
-      font-family: Arial;
-      font-size: 10pt;
-    }
-
-    .node.leaf {
-      border-radius: 0;
-      box-shadow: none;
-    }
-
-    .nodeBG {
-      /*z-index: -1;*/
-      opacity: 1.0;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    .showAllLabels .nodeText {
-      visibility: visible;
-    }
-
-    .node:hover .nodeText {
-      opacity: 1.0;
-      visibility: visible;
-    }
-
-    .node.leaf:hover {
-      cursor: pointer;
-    }
-
-    .node.leaf:hover .nodeBG {
-      border-color: steelblue;
-      border-style: solid;
-      border-width: 2px;
-    }
-
-    .node.leaf:hover {
-      z-index: 10;
-    }
-
-    .mainContainer {
-      width: fit-content;
-      height: fit-content;
-      margin: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="../../source/css/defaultStyles.css">
 </head>
 <body>
 <div class="mainContainer">
@@ -143,11 +64,6 @@
   let photoTreemap = new TreeMap("#target")
     .breadCrumsHtmlID('#breadcrumbs')
     .zoomable(true)
-    //    .height(600)
-    //    .width(600)
-    //    .chainedAnimations(false)
-    //    .animationDuration(0)
-    //    .padding(5)
     .update(root);
 
 </script>

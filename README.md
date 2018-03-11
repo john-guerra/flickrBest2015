@@ -4,10 +4,10 @@ A library for displaying groups of photos with statistics on a TreeMap.
 
 # Usage
 
-### Import
+### Imports
 To start using the PhotoTreeMap you will need in your HTML a target element to display the tree, a target element to display the breadcrumbs and to import the following files: [PhotoTreeMap.js](https://cdn.rawgit.com/john-guerra/photoTreemap/master/source/PhotoTreeMap.js), [ShannonEntropy.js](https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/ShannonEntropy.js), [d3.v3.js](http://d3js.org/d3.v3.min.js) and [jquery-3.3.1.js](https://code.jquery.com/jquery-3.3.1.min.js)
 
-### Import Example
+### Imports Example
 
 ```html
   <div class="mainContainer">

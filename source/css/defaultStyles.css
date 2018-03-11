@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Gruppo');
+.mainContainer{
+  font-family: 'Roboto', sans-serif;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+}
+.node {
+  position: absolute;
+  overflow: hidden;
+  cursor: pointer;
+}
+.node.leaf {
+  cursor: default;
+}
+.node .nodeBG {
+  opacity: 1.0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.node .nodeText {
+  background-image: linear-gradient(to top,rgba(0,0,0,.7) 0,transparent 100%);
+  width: 100%;
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  opacity: 0;
+  transition: .25s;
+  color: #FAFAFA;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.node:hover .nodeText {
+  opacity: 1;
+  bottom: 0;
+}
+.node .nodeTextTitle {
+  font-size: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 3% 9% 0 3%;
+}
+
+.node .nodeTextValue {
+  font-family: 'Gruppo', cursive;
+  font-size: 250%;
+  padding: 0 4px;
+}
+
+.showAllLabels .nodeText {
+  /*visibility: visible;*/
+}
+
+.node:hover .nodeText {
+  /*opacity: 1.0;*/
+  /*visibility: visible;*/
+}
+
+.node.leaf:hover {
+  /*cursor: pointer;*/
+}
+
+.node.leaf:hover .nodeBG {
+  /*border-color: steelblue;*/
+  /*border-style: solid;*/
+  /*border-width: 2px;*/
+}
+
+.node.leaf:hover {
+  /*z-index: 10;*/
+}
