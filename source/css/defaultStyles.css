@@ -78,3 +78,6 @@
 .node.leaf:hover {
   /*z-index: 10;*/
 }
+.breadCrum{
+  cursor: pointer;
+}

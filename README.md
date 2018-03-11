@@ -10,6 +10,10 @@ To start using the PhotoTreeMap you will need in your HTML a target element to d
 ### Imports Example
 
 ```html
+<head>
+<link rel="stylesheet" href="https://cdn.rawgit.com/john-guerra/photoTreemap/master/source/css/defaultStyles.css">
+</head>
+...
   <div class="mainContainer">
     <div id="breadcrumbs"></div>
     <div id="target"></div>
@@ -31,7 +35,7 @@ Each Node with children should have the children property.
 
 In addition, the leaves or the nodes which represents a category must to have the property img.
 
-* img \<Strig> : Source of the image of the Node, the root Node should not have img.
+* img \<String> : Source of the image of the Node, the root Node should not have img.
 
 ### Hierarchy Example
 
@@ -108,76 +112,4 @@ let photoTreemap = new TreeMap("#target")
 ```
 
 ## Styles
-Finally, you need to define a proper style for the PhotoTreeMap. In order to do it, you should define styles for .node, .leaf, .nodeText, .nodeTextTitle, .nodeTextValue and .nodeBG. 
-
-## Styles Example
-
-```css
-.node {
-  line-height: 1;
-  overflow: hidden;
-  position: absolute;
-  text-indent: 2px;
-  background-repeat: no-repeat;
-  background-position: center;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.50);
-}
-.nodeText {
-  width: 100%;
-  background: rgba(51, 51, 51, 0.37);
-  font-size: 14px;
-  color: #FFFFFF;
-  line-height: 16px;
-}
-.nodeTextTitle {
-  height: 20px;
-  font-family: Arial-BoldMT;
-  font-size: 10pt;
-  overflow: hidden;
-}
-.nodeTextValue {
-  font-family: Arial;
-  font-size: 10pt;
-}
-.node.leaf {
-  border-radius: 0;
-  box-shadow: none;
-}
-.nodeBG {
-  /*z-index: -1;*/
-  opacity: 1.0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.showAllLabels .nodeText {
-  visibility: visible;
-}
-.node:hover .nodeText {
-  opacity: 1.0;
-  visibility: visible;
-}
-.node.leaf:hover {
-  cursor: pointer;
-}
-.node.leaf:hover .nodeBG {
-  border-color: steelblue;
-  border-style: solid;
-  border-width: 2px;
-}
-.node.leaf:hover {
-  z-index: 10;
-}
-.mainContainer{
-      width: fit-content;
-      height: fit-content;
-      margin: auto;
-}
-```
+The PhotoTreeMap as default have styles defined. However, you can override these styles, the classes used are: .node, .leaf, .nodeText, .nodeTextTitle, .nodeTextValue and .nodeBG. 
