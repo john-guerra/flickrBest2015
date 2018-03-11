@@ -11,7 +11,7 @@ To start using the PhotoTreeMap you will need in your HTML a target element to d
 
 ```html
 <head>
-<link rel="stylesheet" href="https://cdn.rawgit.com/john-guerra/photoTreemap/master/source/css/defaultStyles.css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/john-guerra/photoTreemap/b695caed7b139317ae78b49feaff3ab19bb1ff47/source/css/defaultStyles.css">
 </head>
 ...
   <div class="mainContainer">
@@ -20,8 +20,8 @@ To start using the PhotoTreeMap you will need in your HTML a target element to d
   </div>
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdn.rawgit.com/john-guerra/photoTreemap/master/source/ShannonEntropy.js"></script>
-  <script src="https://cdn.rawgit.com/john-guerra/photoTreemap/master/source/PhotoTreeMap.js"></script>
+  <script src="https://cdn.rawgit.com/john-guerra/photoTreemap/b695caed7b139317ae78b49feaff3ab19bb1ff47/source/ShannonEntropy.js"></script>
+  <script src="https://cdn.rawgit.com/john-guerra/photoTreemap/b695caed7b139317ae78b49feaff3ab19bb1ff47/source/PhotoTreeMap.js"></script>
 ```
 ## Hierarchy
 Before create the PhotoTreeMap you need to create the Hierarchy to display. A Hierarchy is the root Node of the tree, each Node must have at least the following properties:
