@@ -126,3 +126,4 @@ The PhotoTreeMap as default have styles defined in [defaultStyles.css](https://r
 ## Basic Example
 
 ![Basic Example](https://github.com/john-guerra/photoTreemap/blob/master/examples/demos/PTMDemoBasicExample1.gif?raw=true "PhotoTreeMap Basic Example Demo 1")
+This [Basic Example](https://github.com/john-guerra/photoTreemap/tree/master/examples/basic) create a PhotoTreeMap with minimum configuration and with a small hierarchy.
