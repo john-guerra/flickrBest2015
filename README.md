@@ -125,4 +125,4 @@ The PhotoTreeMap as default have styles defined in [defaultStyles.css](https://r
  
 ## Basic Example
 
-![Basic Example](https://lh5.googleusercontent.com/dKijChqxJNjr2esqXrrwhGal_JacZCW5w6VU38Cl_PHoi1XvMltLrYfWmVagunxKsxGJ_sEHH-msZPWXh3eR=w1366-h700 "PhotoTreeMap Basic Example Demo 1")
+![Basic Example](https://github.com/john-guerra/photoTreemap/blob/master/examples/demos/PTMDemoBasicExample1.gif?raw=true "PhotoTreeMap Basic Example Demo 1")
