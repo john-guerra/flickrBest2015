@@ -96,21 +96,16 @@ Now you will need to create a new TreeMap and setup it. All possible configurati
 | breadCrumsHtmlID      | string                | ID of the element in which will be displayed the breadcrumbs.|
 | zoomable              | boolean               | Allows the PhotoTreeMap to be zoomable. If it is false, all the images will be showed at the same time.|
 | height                | number                | Set the height in pixels of the PhotoTreeMap.|
-
-* breadCrumsHtmlID (ID \<String>) : ID of the element in which will be displayed the breadcrumbs.
-* zoomable (enabled \<Boolean>) : Allows the PhotoTreeMap to be zoomable. If it is false, all the images will be showed at the same time.
-* height (height \<Number>)  : Set the height in pixels of the PhotoTreeMap.
-* width (width \<Number>)  : Set the width in pixels of the PhotoTreeMap.
-* chainedAnimations (enabled \<Boolean>) : Allows the PhotoTreeMap to chain its animations.
-* animationDuration (duration \<Number>) : Set the duration of the animations.
-* padding (padding \<Number>) : Set the padding in pixels of the PhotoTreeMap.
-* sort (sortProperty \<String>) : Set the property used to sort the Nodes, as default they are sorted by the property value.
-* value (valueProperty \<String>) :  Set the property used as value of the Nodes, as default their value is the property value.
-* label (labelProperty \<String>) : Set the property shown as label, as default the property showed is label.
-* labelValue (labelValueProperty \<String>) : Set the property shown as value label, as default the property showed is labelValue.
-* showLabel (showLabels \<Boolean>) : Enable or disable the display of labels in the Nodes.
-* useShannon (useShannon <\Boolean>) : Enable the PhotoTreeMap to use ShannonEntropy, it allows the Nodes to display the most relavant part of the image. 
-
+| width                 | number                | Set the width in pixels of the PhotoTreeMap.|
+| chainedAnimations     | boolean               | Allows the PhotoTreeMap to chain its animations.|
+| animationDuration     | number                | Set the duration of the animations.|
+| padding               | number                | Set the padding in pixels of the PhotoTreeMap.|
+| sort                  | string                | Set the property used to sort the Nodes, as default they are sorted by the property value.|
+| value                 | string                | Set the property used as value of the Nodes, as default their value is the property value.|
+| label                 | string                | Set the property shown as label, as default the property showed is label.|
+| labelValue            | string                | Set the property shown as label value, as default the property showed is labelValue.|
+| showLabel             | boolean               | Enable or disable the display of labels in the Nodes.|
+| useShannon            | boolean               | Enable the PhotoTreeMap to use ShannonEntropy, it allows the Nodes to display the most relevant part of the image.|
 
 Finally, bind the data with the PhotoTreeMap by calling the update function and send as param the root of the hierarchy to display.
 * update (root \<Hierarchy>) : Bind the hierarchy with the PhotoTreeMap.
