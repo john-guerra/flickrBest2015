@@ -90,9 +90,16 @@ In addition, the leaves or the nodes which represents a category must to have th
 ## Setup
 
 Now you will need to create a new TreeMap and setup it. All possible configurations are applicable using a chaining approach, so each function return the PhotoTreeMap itself. All functions (configurations) are optional and listed below:
+
+| Name                  | Type                  |  Description |
+| -------------         |-------------          | -----                            |
+| breadCrumsHtmlID      | string                | ID of the element in which will be displayed the breadcrumbs.|
+| zoomable              | boolean               | Allows the PhotoTreeMap to be zoomable. If it is false, all the images will be showed at the same time.|
+| height                | number                | Set the height in pixels of the PhotoTreeMap.|
+
 * breadCrumsHtmlID (ID \<String>) : ID of the element in which will be displayed the breadcrumbs.
 * zoomable (enabled \<Boolean>) : Allows the PhotoTreeMap to be zoomable. If it is false, all the images will be showed at the same time.
-* height (height \<Number>)  : Set the height in pixels of the PhotoTreeMap. 
+* height (height \<Number>)  : Set the height in pixels of the PhotoTreeMap.
 * width (width \<Number>)  : Set the width in pixels of the PhotoTreeMap.
 * chainedAnimations (enabled \<Boolean>) : Allows the PhotoTreeMap to chain its animations.
 * animationDuration (duration \<Number>) : Set the duration of the animations.
