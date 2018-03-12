@@ -25,17 +25,24 @@ To start using the PhotoTreeMap you will need in your HTML a target element to d
 ```
 ## Hierarchy
 Before create the PhotoTreeMap you need to create the Hierarchy to display. A Hierarchy is the root Node of the tree, each Node must have at least the following properties:
-* id \<String> : ID of the node.
-* value \<Number> : Value of the node, this will be used to sort the nodes and they will be displayed depending on it.
-* label \<String> : Text to be displayed in each Node.
+
+| Name                  | Type                  |  Description |
+| -------------         |-------------          | -----        |
+| id                    | string                | ID of the node.|
+| value                 | number                | Value of the node, this will be used to sort the nodes and they will be displayed depending on it.|
+| label                 | string                | Text to be displayed in each Node.|
 
 Each Node with children should have the children property.
 
-* children \<Array\<Node>> : An array with nodes, which represent the node's children.
+| Name                  | Type                  |  Description |
+| -------------         |-------------          | -----        |
+| children              | Array \<Node>         | An array with nodes, which represent the node's children.|
 
 In addition, the leaves or the nodes which represents a category must to have the property img.
 
-* img \<String> : Source of the image of the Node, the root Node should not have img.
+| Name                  | Type                  |  Description |
+| -------------         |-------------          | -----        |
+| img                   | string                | Source of the image of the Node, the root Node should not have img.|
 
 ### Hierarchy Example
 
@@ -108,8 +115,10 @@ Now you will need to create a new TreeMap and setup it. All possible configurati
 | useShannon            | boolean               | Enable the PhotoTreeMap to use ShannonEntropy, it allows the Nodes to display the most relevant part of the image.|
 
 Finally, bind the data with the PhotoTreeMap by calling the update function and send as param the root of the hierarchy to display.
-         
-| update                |Hierarchy              | Bind the hierarchy with the PhotoTreeMap.|
+
+| Name                  | Type                  |  Description |
+| -------------         |-------------          | -----        |
+| update                | Hierarchy              | Bind the hierarchy with the PhotoTreeMap.|
 
 ## Setup Example
 
