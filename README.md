@@ -5,7 +5,7 @@ A library for displaying groups of photos with statistics on a TreeMap.
 # Usage
 
 ### Imports
-To start using the PhotoTreeMap you will need in your HTML a target element to display the tree, a target element to display the breadcrumbs and to import the following files: [PhotoTreeMap.js](https://cdn.rawgit.com/john-guerra/photoTreemap/master/source/PhotoTreeMap.js), [ShannonEntropy.js](https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/ShannonEntropy.js), [d3.v3.js](http://d3js.org/d3.v3.min.js) and [jquery-3.3.1.js](https://code.jquery.com/jquery-3.3.1.min.js)
+To start using the PhotoTreeMap you will need in your HTML a target element to display the tree, a target element to display the breadcrumbs and to import the following files: [PhotoTreeMap.js](https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/PhotoTreeMap.js), [ShannonEntropy.js](https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/ShannonEntropy.js), [d3.v3.js](http://d3js.org/d3.v3.min.js), [jquery-3.3.1.js](https://code.jquery.com/jquery-3.3.1.min.js) and [defaultStyles.css](https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/css/defaultStyles.css).
 
 ### Imports Example
 
@@ -97,6 +97,13 @@ Now you will need to create a new TreeMap and setup it. All possible configurati
 * chainedAnimations (enabled \<Boolean>) : Allows the PhotoTreeMap to chain its animations.
 * animationDuration (duration \<Number>) : Set the duration of the animations.
 * padding (padding \<Number>) : Set the padding in pixels of the PhotoTreeMap.
+* sort (sortProperty \<String>) : Set the property used to sort the Nodes, as default they are sorted by the property value.
+* value (valueProperty \<String>) :  Set the property used as value of the Nodes, as default their value is the property value.
+* label (labelProperty \<String>) : Set the property shown as label, as default the property showed is label.
+* labelValue (labelValueProperty \<String>) : Set the property shown as value label, as default the property showed is labelValue.
+* showLabel (showLabels \<Boolean>) : Enable or disable the display of labels in the Nodes.
+* useShannon (useShannon <\Boolean>) : Enable the PhotoTreeMap to use ShannonEntropy, it allows the Nodes to display the most relavant part of the image. 
+
 
 Finally, bind the data with the PhotoTreeMap by calling the update function and send as param the root of the hierarchy to display.
 * update (root \<Hierarchy>) : Bind the hierarchy with the PhotoTreeMap.
@@ -112,4 +119,10 @@ let photoTreemap = new TreeMap("#target")
 ```
 
 ## Styles
-The PhotoTreeMap as default have styles defined. However, you can override these styles, the classes used are: .node, .leaf, .nodeText, .nodeTextTitle, .nodeTextValue and .nodeBG. 
+The PhotoTreeMap as default have styles defined in [defaultStyles.css](https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/css/defaultStyles.css). However, you can override these styles, the classes used are: .node, .leaf, .nodeText, .nodeTextTitle, .nodeTextValue and .nodeBG.
+
+# Examples
+ 
+## Basic Example
+
+![Basic Example](https://lh5.googleusercontent.com/dKijChqxJNjr2esqXrrwhGal_JacZCW5w6VU38Cl_PHoi1XvMltLrYfWmVagunxKsxGJ_sEHH-msZPWXh3eR=w1366-h700 "PhotoTreeMap Basic Example Demo 1")

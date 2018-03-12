@@ -66,7 +66,7 @@ function TreeMap(htmlID) {
     label = _;
     return self;
   };
-
+  //TODO : Add in the README.md
   self.accumulateValue = function (_) {
     if (!arguments.length) return accumulateValue;
     accumulateValue = _;
@@ -78,7 +78,7 @@ function TreeMap(htmlID) {
     labelValue = _;
     return self;
   };
-
+//TODO : Add in the README.md
   self.filter = function (_) {
     if (!arguments.length) return filter;
     filter = _;
@@ -96,7 +96,7 @@ function TreeMap(htmlID) {
     padding = _;
     return self;
   };
-
+//TODO : Add in the README.md
   self.showAsGrid = function (_) {
     if (!arguments.length) return showAsGrid;
     showAsGrid = _;
