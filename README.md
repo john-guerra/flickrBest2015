@@ -108,7 +108,7 @@ Now you will need to create a new TreeMap and setup it. All possible configurati
 | useShannon            | boolean               | Enable the PhotoTreeMap to use ShannonEntropy, it allows the Nodes to display the most relevant part of the image.|
 
 Finally, bind the data with the PhotoTreeMap by calling the update function and send as param the root of the hierarchy to display.
-* update (root \<Hierarchy>) : Bind the hierarchy with the PhotoTreeMap.
+| update                |Hierarchy              | Bind the hierarchy with the PhotoTreeMap.
 
 ## Setup Example
 
