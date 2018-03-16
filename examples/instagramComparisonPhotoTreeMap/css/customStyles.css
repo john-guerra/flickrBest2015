@@ -1,0 +1,28 @@
+body{
+  overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+}
+.mainContainer{
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+}
+
+#target{
+  width: 80vw;
+  height: 80vh;
+}
+
+.searchUser{
+  width:30vw;
+  border: 2px solid #e2e2e2;
+  border-radius: 5px;
+  line-height: 2;
+  font-size: 20px;
+  font-weight: 200;
+  padding: 0 20px;
+}

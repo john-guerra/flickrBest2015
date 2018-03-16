@@ -4,14 +4,18 @@
   <meta charset="UTF-8">
   <title>Instagram Comparison PhotoTreeMap</title>
   <link rel="stylesheet" href="../../source/css/defaultStyles.css">
-  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="css/customStyles.css">
 </head>
 <body>
+<div class="mainContainer">
+  <input id="searchUser" class="searchUser" type="text" placeholder="Enter an Instagram user..." spellcheck="false" autocomplete="off" onkeypress="searchUser(event)">
   <div id="target"></div>
+</div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="../../source/ShannonEntropy.js"></script>
 <script src="../../source/PhotoTreeMap.js"></script>
 <script src="./js/main.js"></script>
+<script src="./js/utils.js"></script>
 </body>
 </html>

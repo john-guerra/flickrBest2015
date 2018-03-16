@@ -77,13 +77,13 @@ function buildTreeWithUser(user) {
 async function run() {
   await initPhotoTreeMap();
   await addNewUserToPhotoTreeMap('atleticodemadrid');
-  setTimeout(() => {
-    addNewUserToPhotoTreeMap('fcbarcelona')
-  }, 5000);
-
-  setTimeout(() => {
-    addNewUserToPhotoTreeMap('realmadrid')
-  }, 15000);
+  // setTimeout(() => {
+  //   addNewUserToPhotoTreeMap('fcbarcelona')
+  // }, 5000);
+  //
+  // setTimeout(() => {
+  //   addNewUserToPhotoTreeMap('realmadrid')
+  // }, 15000);
 }
 
 window.onload = run();
