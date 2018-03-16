@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Gruppo');
-.mainContainer{
+.breadCrum, .node{
   font-family: 'Roboto', sans-serif;
-  width: fit-content;
-  height: fit-content;
-  margin: auto;
 }
 .node {
   position: absolute;
@@ -39,7 +36,7 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.node:hover .nodeText {
+.node:hover .nodeText, .node:hover .nodeTextTitle, .node:hover .nodeTextValue {
   opacity: 1;
   bottom: 0;
 }
@@ -48,12 +45,21 @@
   margin-top: auto;
   margin-bottom: auto;
   padding: 3% 9% 0 3%;
+  transition: .25s;
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+
 }
 
 .node .nodeTextValue {
   font-family: 'Gruppo', cursive;
   font-size: 250%;
   padding: 0 4px;
+  transition: .25s;
+  position: absolute;
+  bottom: -25px;
+  right: 0;
 }
 
 .showAllLabels .nodeText {

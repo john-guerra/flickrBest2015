@@ -1,11 +1,12 @@
 /* global d3: false, getUrlForPhoto: false, $: false , ShanonEntropy: false */
+
 /*jslint browser: true, indent: 2 */
 
 function TreeMap(htmlID) {
   "use strict";
   let self = this,
-    width = window.innerWidth/2,
-    height = window.innerHeight/2,
+    width = window.innerWidth / 2,
+    height = window.innerHeight / 2,
     color = d3.scale.category20c(),
     treemap,
     fScale,
@@ -33,13 +34,16 @@ function TreeMap(htmlID) {
     dImgQuadrants = new d3.map(),
     chainedAnimations = true,
     animationDuration = 0,
-    zoomable = false;
+    zoomable = false,
+    showNodeTextTitle = true,
+    showNodeTextValue = true;
+  ;
 
   self.margin = {top: 0, right: 0, bottom: 0, left: 0};
 
   self.zoomable = function (_) {
-    if (!arguments.length) return zoomable ;
-    zoomable  = _;
+    if (!arguments.length) return zoomable;
+    zoomable = _;
     return self;
   };
 
@@ -122,14 +126,26 @@ function TreeMap(htmlID) {
   };
 
   self.chainedAnimations = function (_) {
-    if (!arguments.length) return chainedAnimations ;
-    chainedAnimations  = _;
+    if (!arguments.length) return chainedAnimations;
+    chainedAnimations = _;
     return self;
   };
 
   self.animationDuration = function (_) {
-    if (!arguments.length) return animationDuration ;
-    animationDuration  = _;
+    if (!arguments.length) return animationDuration;
+    animationDuration = _;
+    return self;
+  };
+
+  self.showNodeTextValue = function (_) {
+    if (!arguments.length) return showNodeTextValue;
+    showNodeTextValue = _;
+    return self;
+  };
+
+  self.showNodeTextTitle = function (_) {
+    if (!arguments.length) return showNodeTextTitle;
+    showNodeTextTitle = _;
     return self;
   };
 
@@ -387,7 +403,6 @@ function TreeMap(htmlID) {
           currentNode = self.root;
         }
       }
-
     }
 
     // console.log("Update root:");
@@ -397,7 +412,6 @@ function TreeMap(htmlID) {
 
     treemap = getTreemap();
     if (self.zoomable()) {
-
       initialize(self.root);
       accumulate(self.root);
       // treemap.nodes(self.root);
@@ -643,17 +657,21 @@ function TreeMap(htmlID) {
       .remove();
     sel
       .call(position);
+    if (showNodeTextTitle) {
+      d3.selectAll(".node").select(".nodeText").select(".nodeTextTitle")
+        .html(function (d) {
+          // return filter(d.children) ? null : d[label];
+          return d[label];
+        });
+    }
+    if (showNodeTextValue) {
+      d3.selectAll(".node").select(".nodeText").select(".nodeTextValue")
+        .html(function (d) {
+          // return filter(d.children) ? null : d.labelValue;
+          return d.labelValue;
+        });
+    }
 
-    d3.selectAll(".node").select(".nodeTextTitle")
-      .html(function (d) {
-        // return filter(d.children) ? null : d[label];
-        return d[label];
-      });
-    d3.selectAll(".node").select(".nodeTextValue")
-      .html(function (d) {
-        // return filter(d.children) ? null : d.labelValue;
-        return d.labelValue;
-      });
     // .transition()
     // .duration(1500)
     // .style("font-size", function (d) { return d.children ? null : fScale(d[value]) + "em"; });
@@ -677,22 +695,27 @@ function TreeMap(htmlID) {
       .filter(showLabel)
       .append("div")
       .attr("class", "nodeText")
-      // .style("font-size", function (d) {
-      //     return d.children ? null : fScale(d[value]) + "em";
-      // })
-      .append("span")
-      .attr("class", "nodeTextTitle")
-      .html(function (d) {
-        // return filter(d.children) ? null : d[label];
-        return d[label];
-      });
-    sel.select(".nodeText")
-      .append("span")
-      .attr("class", "nodeTextValue")
-      .html(function (d) {
-        // return filter(d.children) ? null : d[labelValue];
-        return d[labelValue];
-      });
+    // .style("font-size", function (d) {
+    //     return d.children ? null : fScale(d[value]) + "em";
+    // })
+    if (showNodeTextTitle) {
+      sel.select(".nodeText")
+        .append("span")
+        .attr("class", "nodeTextTitle")
+        .html(function (d) {
+          // return filter(d.children) ? null : d[label];
+          return d[label];
+        });
+    }
+    if (showNodeTextValue) {
+      sel.select(".nodeText")
+        .append("span")
+        .attr("class", "nodeTextValue")
+        .html(function (d) {
+          // return filter(d.children) ? null : d[labelValue];
+          return d[labelValue];
+        });
+    }
   }
 
   self.jumpIntoRandom = function () {
@@ -1066,18 +1089,18 @@ function TreeMap(htmlID) {
       });
 
     sel.select(".nodeText")
-      // .style("position", "relative");
+    // .style("position", "relative");
     // .style("visibility", function (d) { return  (d.dx < MIN_SIZE_FOR_TEXT) ? "hidden" : "visible"; })
     // .style("left", function(d) { return (x(d.x + d.dx) - x(d.x) / 2)  + "px"; })
 
     if (self.zoomable()) {
       sel.select(".nodeText")
-        // .style("left", function (d) {
-        //   return 0 + "px";
-        // })
-        // .style("top", function (d) {
-        //   return (y(d.y + d.dy) - y(d.y) - TEXT_HEIGHT ) / 2 + "px";
-        // });
+      // .style("left", function (d) {
+      //   return 0 + "px";
+      // })
+      // .style("top", function (d) {
+      //   return (y(d.y + d.dy) - y(d.y) - TEXT_HEIGHT ) / 2 + "px";
+      // });
     } else {
       sel.select(".nodeText")
         .style("left", function (d) {
