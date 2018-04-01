@@ -76,7 +76,7 @@ function buildTreeWithUser(user) {
 
 async function run() {
   await initPhotoTreeMap();
-  await addNewUserToPhotoTreeMap('atleticodemadrid');
+  // await addNewUserToPhotoTreeMap('atleticodemadrid');
   // setTimeout(() => {
   //   addNewUserToPhotoTreeMap('fcbarcelona')
   // }, 5000);
