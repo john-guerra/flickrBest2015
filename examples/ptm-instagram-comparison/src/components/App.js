@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {addNewUserToPhotoTreeMap, deleteUserFromPhotoTreeMap, initPhotoTreeMap, showNotification} from '../utils/main';
+import {addNewUserToPhotoTreeMap, changeImagesAmountPerUser, deleteUserFromPhotoTreeMap, initPhotoTreeMap, showNotification} from '../utils/main';
 import {getUser} from "../utils/requests";
 import SearchUserInput from "./SearchUserInput/SearchUserInput";
 import './App.css';
@@ -7,20 +7,22 @@ import './App.css';
 class App extends Component {
   state = {
     users: [],
-    currentColor: 0
+    currentColor: 0,
+    numberValue: 12,
+    started: false
   };
 
-  async componentDidMount() {
-    await initPhotoTreeMap();
-  }
-
   addUser = async (userName) => {
+    if (!this.state.started) {
+      this.setState({started: true});
+      await initPhotoTreeMap();
+    }
     if (!this.state.users.find(user => user.username === userName)) {
       //Request the user
       const newUser = await getUser(userName);
       if (newUser) {
         if (newUser.images.length !== 0) {
-          await addNewUserToPhotoTreeMap(newUser);
+          await addNewUserToPhotoTreeMap({...newUser, images: newUser.images.slice(0, this.state.numberValue)});
           newUser.color = colors[this.state.currentColor < colors.length ? this.state.currentColor++ : 0];
           this.setState({users: [...this.state.users, newUser]});
 
@@ -31,7 +33,7 @@ class App extends Component {
           window.document.body.appendChild(css);
           this.fixBorders();
         }
-        else{
+        else {
           showNotification(`${userName} does not have images or is a private account`);
         }
       }
@@ -44,7 +46,7 @@ class App extends Component {
     }
   };
 
-  deleteUser = async (user) =>{
+  deleteUser = async (user) => {
     await deleteUserFromPhotoTreeMap(user);
     this.setState({users: this.state.users.filter(c => c.username !== user.username)})
     this.fixBorders();
@@ -61,6 +63,24 @@ class App extends Component {
     }, 1000);
   };
 
+  numberChange = async (event) => {
+    const min = 5;
+    const max = 50;
+    const last = this.state.numberValue;
+    if (event.target.value >= min && event.target.value <= max) {
+      await this.setState({numberValue: event.target.value})
+    }
+    else if (event.target.value <= min) {
+      await this.setState({numberValue: 5})
+    }
+    else if (event.target.value >= max) {
+      await this.setState({numberValue: 50})
+    }
+    if (last !== this.state.numberValue) {
+      changeImagesAmountPerUser(this.state.numberValue, this.state.users);
+    }
+  };
+
   render() {
     return (
       <div className="App">
@@ -69,17 +89,30 @@ class App extends Component {
           <div className="subtitle1">with</div>
           <div className="subtitle2">PhotoTreeMap</div>
         </div>
-        <div className="input">
+        <div className="input" id="input">
           <SearchUserInput addUser={this.addUser}/>
+          <div className="imagesAmount">
+            <input type="number" onChange={this.numberChange} value={this.state.numberValue}/>
+            <div className="label">
+              <div>images/</div>
+              <div>user</div>
+            </div>
+          </div>
         </div>
         <div className="allUsers">
-          {this.state.users.map((user, i) => <div className="user" key={i} style={{border: "2px solid " + user.color}}>{user.username} <i className="mdi mdi-close" onClick={()=>this.deleteUser(user)}/></div>)}
+          {this.state.users.map((user, i) => <div className="user" key={i} style={{border: "2px solid " + user.color}}>{user.username} <i className="mdi mdi-close" onClick={() => this.deleteUser(user)}/></div>)}
         </div>
-        <div id="target"/>
+        <div id="target" className={this.state.started?"started":""}/>
+        <div className="info">
+          <div className="title">How it Works?</div>
+          <div className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+          <div className="media"><img src="./media/demo1.gif" alt=""/> </div>
+        </div>
       </div>
     );
   }
 }
+
 // https://flatuicolors.com/palette/us
 const colors = [
   '#0984e3',

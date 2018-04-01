@@ -13,25 +13,25 @@ export const getImagesByUserID = (userID, amount) => {
             likes_count: node.node.edge_media_preview_like.count,
             shortcode: node.node.shortcode
           }
-        })
+        }).sort((a, b) => b.likes_count - a.likes_count)
     });
 };
 //Return a user with its basic info
 export const getUserByUserName = (userName) => {
   return fetch(`https://www.instagram.com/${userName}/?__a=1`)
     .then(res => {
-      if(res.ok)
+      if (res.ok)
         return res.json();
       else
         throw new Error('Network response was not ok, maybe a 404');
     })
     .then(json => json.graphql.user)
 };
-//Return a complete user and 12 pics within it
+//Return a complete user and 50 pics within it
 export const getUser = async (userName) => {
   try {
     const user = await getUserByUserName(userName);
-    const userImages = await getImagesByUserID(user.id, 12);
+    const userImages = await getImagesByUserID(user.id, 50);
     return {
       username: user.username,
       full_name: user.full_name,
