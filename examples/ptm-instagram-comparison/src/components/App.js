@@ -60,7 +60,7 @@ class App extends Component {
         newNode.style.width = newNode.style.width.split("px")[0] - 4 + "px";
         newNode.style.height = newNode.style.height.split("px")[0] - 4 + "px";
       });
-    }, 1000);
+    }, 1200);
   };
 
   numberChange = async (event) => {
@@ -105,8 +105,11 @@ class App extends Component {
         <div id="target" className={this.state.started?"started":""}/>
         <div className="info">
           <div className="title">How it Works?</div>
-          <div className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+          <div className="text">Compare Instagram users based on the likes in their photos. Thanks to the <a href="https://github.com/john-guerra/photoTreemap" target="_blank" rel="noopener noreferrer">PhotoTreeMap</a>, the users are ordered in a way in which the user with more likes will be the bigger one and the user with less likes will be the smaller. In addition, you can decide how many photos to show per user in the <a href="https://github.com/john-guerra/photoTreemap" target="_blank" rel="noopener noreferrer">PhotoTreeMap</a>.</div>
           <div className="media"><img src="./media/demo1.gif" alt=""/> </div>
+        </div>
+        <div className="footer">
+          Made by <a href="http://luis-mesa.me/" target="_blank" rel="noopener noreferrer">Luis Mesa</a>
         </div>
       </div>
     );

@@ -54,7 +54,8 @@ export const getUserList = async (userName) => {
         id: c.user.pk,
         username: c.user.username,
         full_name: c.user.full_name,
-        profile_pic_url: c.user.profile_pic_url
+        profile_pic_url: c.user.profile_pic_url,
+        is_verified: c.user.is_verified
       }
     }));
 };

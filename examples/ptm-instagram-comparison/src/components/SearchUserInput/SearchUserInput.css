@@ -78,6 +78,7 @@
 
 .Suggestion .image img{
   max-height: 30px;
+  width: 30px;
   border-radius: 50%;
 }
 
@@ -87,4 +88,24 @@
 
 .Suggestion .info .full_name{
   color: #8d8d8d;
+}
+
+@media screen and (max-width: 900px) {
+  .react-autosuggest__input {
+    width: calc(40vw - 100px);
+  }
+  .react-autosuggest__suggestions-container--open {
+    width: calc(40vw - 100px + 40px);
+    overflow-x: hidden;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .react-autosuggest__input {
+    width: calc(45vw - 100px);
+  }
+  .react-autosuggest__suggestions-container--open {
+    width: calc(45vw - 100px + 40px);
+    overflow-x: hidden;
+  }
 }

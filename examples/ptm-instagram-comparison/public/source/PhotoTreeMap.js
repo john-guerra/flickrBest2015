@@ -422,6 +422,8 @@ function TreeMap(htmlID) {
     //Draw, then animate
     let node = updateHelper(currentNode);
     updateImg(node);
+    //LM Bug Fixed, the node text now does not disappear
+    nodeAppendText(node);
     node.transition()
       .duration(750)
       .call(position)
@@ -694,10 +696,15 @@ function TreeMap(htmlID) {
     sel
       .filter(showLabel)
       .append("div")
-      .attr("class", "nodeText")
-    // .style("font-size", function (d) {
-    //     return d.children ? null : fScale(d[value]) + "em";
-    // })
+      .attr("class", "nodeText");
+    sel
+      .select(".nodeText")
+      .style("font-size", function (d) {
+        // LM: Fix Bug, the font size of the node text now is relative to the width of the node
+        // console.log(d);
+        const per = window.innerWidth / d.dx;
+        return ((d.value + "").length)/per + "vw";
+      });
     if (showNodeTextTitle) {
       sel.select(".nodeText")
         .append("span")

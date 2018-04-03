@@ -95,6 +95,11 @@ const renderSuggestion = suggestion => (
     <div className="info">
       <div className="username">
         {suggestion.username}
+        {suggestion.is_verified ?
+          <i className="mdi mdi-approval" style={{color:"#0984e3"}}/>
+          :
+          ""
+        }
       </div>
       <div className="full_name">
         {suggestion.full_name}
