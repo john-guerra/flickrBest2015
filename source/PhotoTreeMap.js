@@ -261,7 +261,7 @@ function TreeMap(htmlID) {
       .append("div")
       .style("padding-top", "45%")
       .style("text-align", "center")
-      .text("Please wait while we load 50k images");
+      .text("Please wait...");
 
     div.select("#spinner")
       .append("img")
@@ -720,7 +720,8 @@ function TreeMap(htmlID) {
         .attr("class", "nodeTextValue")
         .html(function (d) {
           // return filter(d.children) ? null : d[labelValue];
-          return d[labelValue];
+          //LM: Now the values have dots as separators every three digits, ie: 123.123.567
+          return (d[labelValue]+"").replace(new RegExp("^(\\d{" + ((d[labelValue]+"").length%3?(d[labelValue]+"").length%3:0) + "})(\\d{3})", "g"), "$1 $2").replace(/(\d{3})+?/gi, "$1 ").trim().replace(/\s/g, '.');
         });
     }
   }

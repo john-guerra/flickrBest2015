@@ -65,6 +65,9 @@
   align-items: center;
   margin-left: 10px;
 }
+.App .input .imagesAmount.error{
+  border: 2px solid #d63031;
+}
 .App .input .imagesAmount input{
   width: 40px;
   height: 30px;
@@ -118,6 +121,12 @@
   margin-left: 4px;
   color: #7a7a7a;
   cursor: pointer;
+}
+
+.App .allUsers .user .percentage{
+  color: #7a7a7a;
+  margin-left: 2px;
+  font-size: 70%;
 }
 
 .App .allUsers .user .mdi-close:hover{

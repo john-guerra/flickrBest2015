@@ -4,17 +4,17 @@ let mainTree;
 //Init the photoTreeMap
 export async function initPhotoTreeMap() {
   //Setup the PhotoTreeMap
-    photoTreemap = new window.TreeMap("#target")
-      .width(window.innerWidth * 0.75)
-      .height(window.innerHeight * 0.75)
-      .showNodeTextTitle(false)
-    ;
-    mainTree = {
-      id: 'InstagramComparision',
-      value: 0,
-      label: 'InstagramComparision',
-      children: []
-    }
+  photoTreemap = new window.TreeMap("#target")
+    .width(window.innerWidth * 0.75)
+    .height(window.innerHeight * 0.75)
+    .showNodeTextTitle(false)
+  ;
+  mainTree = {
+    id: 'InstagramComparision',
+    value: 0,
+    label: 'InstagramComparision',
+    children: []
+  }
 }
 
 export async function addNewUserToPhotoTreeMap(user) {
@@ -30,7 +30,7 @@ export async function addNewUserToPhotoTreeMap(user) {
   mainTree.children.push(newTree);
   // console.log('mainTree',mainTree);
   photoTreemap.update({...mainTree});
-  console.log(mainTree);
+  // console.log(mainTree);
   return user;
 }
 
@@ -72,11 +72,13 @@ export function buildTreeWithUser(user) {
 }
 
 export async function changeImagesAmountPerUser(newAmount, users) {
-  await users.forEach(async user => {
-    await deleteUserFromPhotoTreeMap(user);
-    await addNewUserToPhotoTreeMap({...user, images: user.images.slice(0, newAmount)});
-  });
-  photoTreemap.update({...mainTree});
+  if (photoTreemap) {
+    await users.forEach(async user => {
+      await deleteUserFromPhotoTreeMap(user);
+      await addNewUserToPhotoTreeMap({...user, images: user.images.slice(0, newAmount)});
+    });
+    photoTreemap.update({...mainTree});
+  }
 }
 
 //Show notification
