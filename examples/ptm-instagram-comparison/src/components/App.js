@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {addNewUserToPhotoTreeMap, changeImagesAmountPerUser, deleteUserFromPhotoTreeMap, initPhotoTreeMap, showNotification, resizePhotoTreeMap} from '../utils/main';
+import {addNewUserToPhotoTreeMap, changeImagesAmountPerUser, deleteUserFromPhotoTreeMap, initPhotoTreeMap, showNotification} from '../utils/main';
 import {getUser} from "../utils/requests";
 import SearchUserInput from "./SearchUserInput/SearchUserInput";
 import './App.css';
