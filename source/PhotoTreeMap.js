@@ -702,9 +702,9 @@ function TreeMap(htmlID) {
       .style("font-size", function (d) {
         // LM: Fix Bug, the font size of the node text now is relative to the width of the node
         // console.log(d);
-        // const per = self.width() / d.dx;
-        // return ((d.value + "").length)/per + "vw";
-        return d.dx/ (d.value + "").length + "px";
+        const per = self.width() / d.dx;
+        return ((d.value + "").length)/per + "vw";
+        // return d.dx/ (d.value + "").length + "px";
       });
     if (showNodeTextTitle) {
       sel.select(".nodeText")
