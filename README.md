@@ -6,7 +6,7 @@ A library for displaying groups of photos with statistics on a TreeMap.
  
 ## Basic Example
 
-This [Basic Example](https://github.com/john-guerra/photoTreemap/tree/master/examples/basic) create a PhotoTreeMap with minimum configuration and with a small hierarchy. The source code is in [examples/basic](https://github.com/john-guerra/photoTreemap/tree/master/examples/basic).
+This [Basic Example](https://john-guerra.github.io/photoTreemap/master/examples/basic/index.html) create a PhotoTreeMap with minimum configuration and with a small hierarchy. The source code is in [examples/basic](https://github.com/john-guerra/photoTreemap/tree/master/examples/basic).
 
 ![Basic Example](https://github.com/john-guerra/photoTreemap/blob/master/examples/demos/PTMDemoBasicExample1.gif?raw=true "PhotoTreeMap Basic Example Demo 1")
 
