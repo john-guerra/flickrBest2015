@@ -704,7 +704,7 @@ function TreeMap(htmlID) {
         // console.log(d);
         // const per = self.width() / d.dx;
         // return ((d.value + "").length)/per + "vw";
-        return d.dx/ (d.value + "").length;
+        return d.dx/ (d.value + "").length + "px";
       });
     if (showNodeTextTitle) {
       sel.select(".nodeText")
