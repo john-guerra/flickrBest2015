@@ -1,7 +1,7 @@
 /* global d3: false, getUrlForPhoto: false, $: false , ShanonEntropy: false */
 
 /*jslint browser: true, indent: 2 */
-
+//v0.1
 function TreeMap(htmlID) {
   "use strict";
   let self = this,
@@ -702,8 +702,9 @@ function TreeMap(htmlID) {
       .style("font-size", function (d) {
         // LM: Fix Bug, the font size of the node text now is relative to the width of the node
         // console.log(d);
-        const per = window.innerWidth / d.dx;
-        return ((d.value + "").length)/per + "vw";
+        // const per = self.width() / d.dx;
+        // return ((d.value + "").length)/per + "vw";
+        return d.dx/ (d.value + "").length;
       });
     if (showNodeTextTitle) {
       sel.select(".nodeText")
