@@ -2,6 +2,20 @@
 
 A library for displaying groups of photos with statistics on a TreeMap.
 
+# Examples
+ 
+## Basic Example
+
+This [Basic Example](https://github.com/john-guerra/photoTreemap/tree/master/examples/basic) create a PhotoTreeMap with minimum configuration and with a small hierarchy. The source code is in [examples/basic](https://github.com/john-guerra/photoTreemap/tree/master/examples/basic).
+
+![Basic Example](https://github.com/john-guerra/photoTreemap/blob/master/examples/demos/PTMDemoBasicExample1.gif?raw=true "PhotoTreeMap Basic Example Demo 1")
+
+## Instagram Trends
+
+[Instagram Trends](https://john-guerra.github.io/photoTreemap//examples/ptm-instagram-comparison/build/index.html) create a PhotoTreeMap to compare the popularity of Instagram users. This example require a medium configuration. The source code is in [examples/basic](https://github.com/john-guerra/photoTreemap/tree/master/examples/ptm-instagram-comparison).
+
+![Instagram Trends](https://github.com/john-guerra/photoTreemap/blob/master/examples/demos/PTMInstagramTrends.gif?raw=true "PhotoTreeMap Instagram Trends")
+
 # Usage
 
 ### Imports
@@ -132,11 +146,3 @@ let photoTreemap = new TreeMap("#target")
 
 ## Styles
 The PhotoTreeMap as default have styles defined in [defaultStyles.css](https://raw.githubusercontent.com/john-guerra/photoTreemap/master/source/css/defaultStyles.css). However, you can override these styles, the classes used are: .node, .leaf, .nodeText, .nodeTextTitle, .nodeTextValue and .nodeBG.
-
-# Examples
- 
-## Basic Example
-
-![Basic Example](https://github.com/john-guerra/photoTreemap/blob/master/examples/demos/PTMDemoBasicExample1.gif?raw=true "PhotoTreeMap Basic Example Demo 1")
-
-This [Basic Example](https://github.com/john-guerra/photoTreemap/tree/master/examples/basic) create a PhotoTreeMap with minimum configuration and with a small hierarchy.
