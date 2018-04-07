@@ -704,16 +704,25 @@ function TreeMap(htmlID) {
         // LM: Fix Bug, the font size of the node text now is relative to the width of the node
         // console.log(d);
         const widthNodevw = d.dx * 100 / window.innerWidth;
-        console.log(d.dx);
-        const length = 4;
+        console.log('dx',d.dx);
+        //LM: Now the values use k, m or b
+        const valueText = Math.abs(Number(d[labelValue])) >= 1.0e+9
+          ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+9* 100) / 100).toFixed(2) + "B"
+          : Math.abs(Number(d[labelValue])) >= 1.0e+6
+            ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+6* 100) / 100).toFixed(2) + "M"
+            : Math.abs(Number(d[labelValue])) >= 1.0e+3
+              ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+3* 100) / 100).toFixed(2) + "K"
+              : Math.abs(Number(d[labelValue]));
+
         let fontSize = 17;
-        console.log((fontSize * length));
-        if (fontSize * length > d.dx)
+        console.log('fontSize*length',fontSize*2 * valueText.length);
+        if (fontSize * valueText.length*2 > d.dx)
           fontSize = 14;
-        if (fontSize * length > d.dx)
+        if (fontSize * valueText.length*2 > d.dx)
           fontSize = 10;
-        if (fontSize * length > d.dx)
-          fontSize = d.dx / (2 * length);
+        if (fontSize * valueText.length*2 > d.dx)
+          fontSize = d.dx / (2 * valueText.length);
+        console.log('fontSize',fontSize );
 
         // const fs = (d.value + "").length < 3 ? (d.dx / 2 * 3) / (d.value + "").length : (d.value + "").length < 6 ?;
 
@@ -737,11 +746,11 @@ function TreeMap(htmlID) {
           // return filter(d.children) ? null : d[labelValue];
           //LM: Now the values use k, m or b
           return Math.abs(Number(d[labelValue])) >= 1.0e+9
-            ? Math.abs(Number(d[labelValue])) / 1.0e+9 + "B"
+            ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+9* 100) / 100).toFixed(2) + "B"
             : Math.abs(Number(d[labelValue])) >= 1.0e+6
-              ? Math.abs(Number(d[labelValue])) / 1.0e+6 + "M"
+              ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+6* 100) / 100).toFixed(2) + "M"
               : Math.abs(Number(d[labelValue])) >= 1.0e+3
-                ? Math.abs(Number(d[labelValue])) / 1.0e+3 + "K"
+                ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+3* 100) / 100).toFixed(2) + "K"
                 : Math.abs(Number(d[labelValue]));
         });
     }
