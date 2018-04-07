@@ -31,11 +31,21 @@ export const getUserByUserName = (userName) => {
 export const getUser = async (userName) => {
   try {
     const user = await getUserByUserName(userName);
-    const userImages = await getImagesByUserID(user.id, 50);
+    // const userImages = await getImagesByUserID(user.id, 50);
     return {
       username: user.username,
       full_name: user.full_name,
-      images: userImages,
+      images: user.edge_owner_to_timeline_media.edges
+        .map(node => {
+          return {
+            id: node.node.id,
+            src: node.node.display_url,
+            resources: node.node.thumbnail_resources,
+            comments_count: node.node.edge_media_to_comment.count,
+            likes_count: node.node.edge_media_preview_like.count,
+            shortcode: node.node.shortcode
+          }
+        }).sort((a, b) => b.likes_count - a.likes_count),
       id: user.id,
     }
   }

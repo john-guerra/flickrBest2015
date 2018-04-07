@@ -94,18 +94,18 @@ class App extends Component {
         </div>
         <div className="input" id="input">
           <SearchUserInput addUser={this.addUser}/>
-          <div className={"imagesAmount tooltip " + (this.state.numberValue < min || this.state.numberValue > max ? "error" : " ")}>
-            <input type="number" onChange={this.numberChange} value={this.state.numberValue} min="5" max="50"/>
-            <div className="label">
-              <div>images/</div>
-              <div>user</div>
-            </div>
-            {(this.state.numberValue < min || this.state.numberValue > max ) ?
-              <span className="tooltiptext">The amount should be between {min} and {max}</span>
-              :
-              ''
-            }
-          </div>
+          {/*<div className={"imagesAmount tooltip " + (this.state.numberValue < min || this.state.numberValue > max ? "error" : " ")}>*/}
+            {/*<input type="number" onChange={this.numberChange} value={this.state.numberValue} min="5" max="50"/>*/}
+            {/*<div className="label">*/}
+              {/*<div>images/</div>*/}
+              {/*<div>user</div>*/}
+            {/*</div>*/}
+            {/*{(this.state.numberValue < min || this.state.numberValue > max ) ?*/}
+              {/*<span className="tooltiptext">The amount should be between {min} and {max}</span>*/}
+              {/*:*/}
+              {/*''*/}
+            {/*}*/}
+          {/*</div>*/}
         </div>
         <div className="allUsers">
           {this.state.users.sort((a, b) => b.totalValue - a.totalValue).map((user, i) =>
@@ -122,7 +122,8 @@ class App extends Component {
         <div id="target" className={this.state.started ? "started" : ""}/>
         <div className="info">
           <div className="title">How it Works?</div>
-          <div className="text">Compare Instagram users based on the likes in their photos. Thanks to the <a href="https://github.com/john-guerra/photoTreemap" target="_blank" rel="noopener noreferrer">PhotoTreeMap</a>, the users are ordered in a way in which the user with more likes will be the bigger one and the user with less likes will be the smaller. In addition, you can decide how many photos to show per user in the <a href="https://github.com/john-guerra/photoTreemap" target="_blank" rel="noopener noreferrer">PhotoTreeMap</a>.</div>
+          {/*<div className="text">Compare Instagram users based on the likes in their photos. Thanks to the <a href="https://github.com/john-guerra/photoTreemap" target="_blank" rel="noopener noreferrer">PhotoTreeMap</a>, the users are ordered in a way in which the user with more likes will be the bigger one and the user with less likes will be the smaller. In addition, you can decide how many photos to show per user in the <a href="https://github.com/john-guerra/photoTreemap" target="_blank" rel="noopener noreferrer">PhotoTreeMap</a>.</div>*/}
+          <div className="text">Compare Instagram users based on the likes in their photos. Thanks to the <a href="https://github.com/john-guerra/photoTreemap" target="_blank" rel="noopener noreferrer">PhotoTreeMap</a>, the users are ordered in a way in which the user with more likes will be the bigger one and the user with less likes will be the smaller.</div>
           <div className="media"><img src="./media/demo1.gif" alt=""/></div>
         </div>
         <div className="footer">

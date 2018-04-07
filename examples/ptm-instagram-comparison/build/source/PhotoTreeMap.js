@@ -2,6 +2,7 @@
 
 /*jslint browser: true, indent: 2 */
 
+//v0.1
 function TreeMap(htmlID) {
   "use strict";
   let self = this,
@@ -702,8 +703,22 @@ function TreeMap(htmlID) {
       .style("font-size", function (d) {
         // LM: Fix Bug, the font size of the node text now is relative to the width of the node
         // console.log(d);
-        const per = window.innerWidth / d.dx;
-        return ((d.value + "").length)/per + "vw";
+        const widthNodevw = d.dx * 100 / window.innerWidth;
+        console.log(d.dx);
+        const length = 4;
+        let fontSize = 17;
+        console.log((fontSize * length));
+        if (fontSize * length > d.dx)
+          fontSize = 14;
+        if (fontSize * length > d.dx)
+          fontSize = 10;
+        if (fontSize * length > d.dx)
+          fontSize = d.dx / (2 * length);
+
+        // const fs = (d.value + "").length < 3 ? (d.dx / 2 * 3) / (d.value + "").length : (d.value + "").length < 6 ?;
+
+        return fontSize + "px";
+        // return d.dx/ (d.value + "").length + "px";
       });
     if (showNodeTextTitle) {
       sel.select(".nodeText")
@@ -720,8 +735,14 @@ function TreeMap(htmlID) {
         .attr("class", "nodeTextValue")
         .html(function (d) {
           // return filter(d.children) ? null : d[labelValue];
-          //LM: Now the values have dots as separators every three digits, ie: 123.123.567
-          return (d[labelValue]+"").replace(new RegExp("^(\\d{" + ((d[labelValue]+"").length%3?(d[labelValue]+"").length%3:0) + "})(\\d{3})", "g"), "$1 $2").replace(/(\d{3})+?/gi, "$1 ").trim().replace(/\s/g, '.');
+          //LM: Now the values use k, m or b
+          return Math.abs(Number(d[labelValue])) >= 1.0e+9
+            ? Math.abs(Number(d[labelValue])) / 1.0e+9 + "B"
+            : Math.abs(Number(d[labelValue])) >= 1.0e+6
+              ? Math.abs(Number(d[labelValue])) / 1.0e+6 + "M"
+              : Math.abs(Number(d[labelValue])) >= 1.0e+3
+                ? Math.abs(Number(d[labelValue])) / 1.0e+3 + "K"
+                : Math.abs(Number(d[labelValue]));
         });
     }
   }
