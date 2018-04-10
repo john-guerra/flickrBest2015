@@ -694,41 +694,46 @@ function TreeMap(htmlID) {
   } //nodeExit
 
   function nodeAppendText(sel) {
-    sel
-      .filter(showLabel)
-      .append("div")
-      .attr("class", "nodeText");
-    sel
-      .select(".nodeText")
-      .style("font-size", function (d) {
-        // LM: Fix Bug, the font size of the node text now is relative to the width of the node
-        // console.log(d);
-        const widthNodevw = d.dx * 100 / window.innerWidth;
-        console.log('dx',d.dx);
-        //LM: Now the values use k, m or b
-        const valueText = Math.abs(Number(d[labelValue])) >= 1.0e+9
-          ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+9* 100) / 100).toFixed(2) + "B"
-          : Math.abs(Number(d[labelValue])) >= 1.0e+6
-            ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+6* 100) / 100).toFixed(2) + "M"
-            : Math.abs(Number(d[labelValue])) >= 1.0e+3
-              ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+3* 100) / 100).toFixed(2) + "K"
-              : Math.abs(Number(d[labelValue]));
+    // console.log(sel.select(".nodeText"));
+    if(sel.select(".nodeText")[0].length>1) {
+      sel.select(".nodeText").remove();
+      // console.log(sel.select(".nodeText"));
+    }
+      sel
+        .filter(showLabel)
+        .append("div")
+        .attr("class", "nodeText");
+      sel
+        .select(".nodeText")
+        .style("font-size", function (d) {
+          // LM: Fix Bug, the font size of the node text now is relative to the width of the node
+          // console.log(d);
+          const widthNodevw = d.dx * 100 / window.innerWidth;
+          // console.log('dx', d.dx);
+          //LM: Now the values use k, m or b
+          const valueText = Math.abs(Number(d[labelValue])) >= 1.0e+9
+            ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+9 * 100) / 100).toFixed(2) + "B"
+            : Math.abs(Number(d[labelValue])) >= 1.0e+6
+              ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+6 * 100) / 100).toFixed(2) + "M"
+              : Math.abs(Number(d[labelValue])) >= 1.0e+3
+                ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+3 * 100) / 100).toFixed(2) + "K"
+                : Math.abs(Number(d[labelValue]));
 
-        let fontSize = 17;
-        console.log('fontSize*length',fontSize*2 * valueText.length);
-        if (fontSize * valueText.length*2 > d.dx)
-          fontSize = 14;
-        if (fontSize * valueText.length*2 > d.dx)
-          fontSize = 10;
-        if (fontSize * valueText.length*2 > d.dx)
-          fontSize = d.dx / (2 * valueText.length);
-        console.log('fontSize',fontSize );
+          let fontSize = 17;
+          // console.log('fontSize*length', fontSize * 2 * valueText.length);
+          if (fontSize * valueText.length * 2 > d.dx)
+            fontSize = 14;
+          if (fontSize * valueText.length * 2 > d.dx)
+            fontSize = 10;
+          if (fontSize * valueText.length * 2 > d.dx)
+            fontSize = d.dx / (2 * valueText.length);
+          // console.log('fontSize', fontSize);
 
-        // const fs = (d.value + "").length < 3 ? (d.dx / 2 * 3) / (d.value + "").length : (d.value + "").length < 6 ?;
+          // const fs = (d.value + "").length < 3 ? (d.dx / 2 * 3) / (d.value + "").length : (d.value + "").length < 6 ?;
 
-        return fontSize + "px";
-        // return d.dx/ (d.value + "").length + "px";
-      });
+          return fontSize + "px";
+          // return d.dx/ (d.value + "").length + "px";
+        });
     if (showNodeTextTitle) {
       sel.select(".nodeText")
         .append("span")

@@ -1,15 +1,21 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {initPhotoTreeMap} from "../utils/main";
 import './App.css';
 
 class App extends Component {
   state = {
-    started: false
+    started: false,
+    groupingProperties: []
   };
 
   componentDidMount = async () => {
-    await initPhotoTreeMap();
-    this.setState({started: true});
+    const firstProperties = [
+      {name: 'Nationality', fun: d => d.Nationality.split(')')[0].slice(1, d.Nationality.split(')')[0].length - 1)},
+      {name: 'Department',},
+      {name: 'Classification'}
+    ];
+    await initPhotoTreeMap(firstProperties);
+    this.setState({started: true, groupingProperties:firstProperties});
   };
 
   render() {

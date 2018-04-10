@@ -46,7 +46,7 @@
   margin-bottom: auto;
   padding: 3% 9% 0 3%;
   transition: .25s;
-  position: absolute;
+  /*position: absolute;*/
   bottom: -25px;
   left: 0;
 
