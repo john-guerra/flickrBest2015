@@ -2,7 +2,7 @@
 
 /*jslint browser: true, indent: 2 */
 
-//v0.2
+//v0.3
 function TreeMap(htmlID) {
   "use strict";
   let self = this,
