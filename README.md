@@ -12,7 +12,7 @@ This [Basic Example](https://john-guerra.github.io/photoTreemap/examples/basic/i
 
 ## Instagram Trends
 
-[Instagram Trends](https://john-guerra.github.io/photoTreemap/examples/ptm-instagram-comparison/build/index.html) create a PhotoTreeMap to compare the popularity of Instagram users. This example require a medium configuration. The source code is in [examples/basic](https://github.com/john-guerra/photoTreemap/tree/master/examples/ptm-instagram-comparison).
+[Instagram Trends](https://john-guerra.github.io/photoTreemap/examples/ptm-instagram-comparison/build/index.html) create a PhotoTreeMap to compare the popularity of Instagram users. This example require a medium configuration. The source code is in [examples/ptm-instagram-comparison](https://github.com/john-guerra/photoTreemap/tree/master/examples/ptm-instagram-comparison).
 
 ![Instagram Trends](https://github.com/john-guerra/photoTreemap/blob/master/examples/demos/PTMInstagramTrends.gif?raw=true "PhotoTreeMap Instagram Trends")
 

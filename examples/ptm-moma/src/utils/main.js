@@ -139,8 +139,8 @@ export async function createHierarchyWithFile(file, groupingProperties) {
       groupingProperties.forEach(c => {
         nested_data = nested_data.key(d => c.fun ? c.fun(d) : d[c.name]);
       });
-      console.log(csv_data)
-      nested_data = nested_data.entries(csv_data);
+      // console.log(csv_data)
+      nested_data = nested_data.entries(csv_data.filter(c => c.ThumbnailURL));
       resolve(nested_data);
     })
   });
@@ -168,8 +168,8 @@ export async function fixNode(node) {
   node.value = node.children ? node.children.reduce((t, c) => c.value + t, 0) : 1;
   node.label = node.key ? node.key : node.Title;
   node.img = node.children ? node.children[0].img : node.ThumbnailURL;
-  if (id % 1000 === 0)
-    console.log(id);
+  // if (id % 1000 === 0)
+    // console.log(id);
 }
 
 
