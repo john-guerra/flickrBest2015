@@ -25,7 +25,7 @@ To start using the PhotoTreeMap you will need in your HTML a target element to d
 
 ```html
 <head>
-<link rel="stylesheet" href="https://cdn.rawgit.com/john-guerra/photoTreemap/b695caed7b139317ae78b49feaff3ab19bb1ff47/source/css/defaultStyles.css">
+<link rel="stylesheet" href="https://rawgit.com/john-guerra/photoTreemap/master/source/css/defaultStyles.css">
 </head>
 ...
   <div class="mainContainer">
