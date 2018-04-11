@@ -402,8 +402,8 @@ function TreeMap(htmlID) {
       } else {
         currentNode = findNodeWithId(currentNode.path);
         if (currentNode === undefined) {
-          console.log("Couldn't find the previous currentNode");
-          console.log(currentNode);
+          // console.log("Couldn't find the previous currentNode");
+          // console.log(currentNode);
           currentNode = self.root;
         }
       }
@@ -745,7 +745,7 @@ function TreeMap(htmlID) {
                 ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+3 * 100) / 100).toFixed(2) + "K"
                 : Math.abs(Number(d[labelValue]))) + "";
 
-          const labelText = d[label]? d[label] : "";
+          const labelText = d[label]? d[label] : "  ";
           const fontSize = d.dx/(valueText.length + labelText.length )< 20 ? d.dx/(valueText.length + labelText.length ) : 20;
           return fontSize + "px";
         });

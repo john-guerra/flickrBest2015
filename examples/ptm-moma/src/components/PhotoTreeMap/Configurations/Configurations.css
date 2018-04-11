@@ -1,0 +1,13 @@
+.Configurations{
+  margin: 0 0 20px 15px;
+}
+.Configurations .config-item{
+  padding-left: 6px;
+  margin: 8px 0;
+  height: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: #7a7a7a;
+}
