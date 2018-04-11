@@ -10,12 +10,13 @@ export async function initPhotoTreeMap(groupingProperties) {
   //Create the hierarchy
   mainTree = {};
   mainTree.values = await createHierarchyWithFile('./data/moma.csv', groupingProperties);
-  mainTree.key = 'ptm-MOMA';
+  mainTree.key = 'MOMA';
   await fixNode(mainTree);
 
   //Setup the PhotoTreeMap
   // setTimeout(()=> {
   photoTreemap
+    .breadCrumsHtmlID('#breadcrumbs')
     .width(window.innerWidth * 0.7)
     .height(window.innerHeight * 0.7)
     .zoomable(true);
@@ -41,17 +42,6 @@ export async function createHierarchyWithFile(file, groupingProperties) {
       resolve(nested_data);
     })
   });
-}
-
-export async function createTree(oldHierarchy) {
-  function recursion(level) {
-    level.id = 'abc';
-    if (level.values) {
-      level.values.forEach(recursion)
-    }
-  }
-
-  recursion(oldHierarchy);
 }
 
 let id = 0;

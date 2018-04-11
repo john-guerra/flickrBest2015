@@ -2,7 +2,7 @@
 
 /*jslint browser: true, indent: 2 */
 
-//v0.4.5
+//v0.4.6
 function TreeMap(htmlID) {
   "use strict";
   let self = this,
@@ -706,30 +706,6 @@ function TreeMap(htmlID) {
       .filter(showLabel)
       .append("div")
       .attr("class", "nodeText");
-    sel
-      .select(".nodeText")
-      .style("font-size", function (d) {
-        // LM: Fix Bug, the font size of the node text now is relative to the width of the node
-        //LM: Now the values use k, m or b
-        const valueText = (Math.abs(Number(d[labelValue])) >= 1.0e+9
-          ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+9 * 100) / 100).toFixed(2) + "B"
-          : Math.abs(Number(d[labelValue])) >= 1.0e+6
-            ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+6 * 100) / 100).toFixed(2) + "M"
-            : Math.abs(Number(d[labelValue])) >= 1.0e+3
-              ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+3 * 100) / 100).toFixed(2) + "K"
-              : Math.abs(Number(d[labelValue]))) + "";
-
-        let fontSize = 17;
-        // console.log('fontSize*length', fontSize * 2 * valueText.length);
-        if (fontSize * (valueText.length + d[label] ? d[label].length : 0)* 2 > d.dx)
-          fontSize = 14;
-        if (fontSize * (valueText.length + d[label] ? d[label].length : 0)* 2 > d.dx)
-          fontSize = 10;
-        if (fontSize * (valueText.length + d[label] ? d[label].length : 0)* 2 > d.dx)
-          fontSize = d.dx / (2*(  valueText.length + d[label] ? d[label].length : 0));
-        // const fs = (d.value + "").length < 3 ? (d.dx / 2 * 3) / (d.value + "").length : (d.value + "").length < 6 ?;
-        return fontSize + "px";
-      });
     if (showNodeTextTitle) {
       sel.select(".nodeText")
         .append("span")
@@ -755,6 +731,25 @@ function TreeMap(htmlID) {
                 : Math.abs(Number(d[labelValue]))) + "";
         });
     }
+    setTimeout(()=>{
+      sel
+        .select(".nodeText")
+        .style("font-size", function (d) {
+          // LM: Fix Bug, the font size of the node text now is relative to the width of the node
+          //LM: Now the values use k, m or b
+          const valueText = (Math.abs(Number(d[labelValue])) >= 1.0e+9
+            ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+9 * 100) / 100).toFixed(2) + "B"
+            : Math.abs(Number(d[labelValue])) >= 1.0e+6
+              ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+6 * 100) / 100).toFixed(2) + "M"
+              : Math.abs(Number(d[labelValue])) >= 1.0e+3
+                ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+3 * 100) / 100).toFixed(2) + "K"
+                : Math.abs(Number(d[labelValue]))) + "";
+
+          const labelText = d[label]? d[label] : "";
+          const fontSize = d.dx/(valueText.length + labelText.length )< 20 ? d.dx/(valueText.length + labelText.length ) : 20;
+          return fontSize + "px";
+        });
+    },1)
   }
 
   self.jumpIntoRandom = function () {

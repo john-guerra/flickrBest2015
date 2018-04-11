@@ -33,13 +33,13 @@
   font-size: 1.5vw;
 }
 
-.App #target{
+.App #ptmContainer{
   width: 0;
   height: 0;
   opacity: 0;
   transition: width 0.5s, height 0.5s, opacity 1s;
 }
-.App #target.started{
+.App #ptmContainer.started{
   opacity: 1;
   width: 75vw;
   height: 75vh;
