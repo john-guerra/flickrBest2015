@@ -117,6 +117,7 @@ function TreeMap(htmlID) {
   self.width = function (_) {
     if (!arguments.length) return width;
     width = _;
+    //LM: Size bug fix
     self.updateWindowSizes();
     return self;
   };
@@ -124,6 +125,7 @@ function TreeMap(htmlID) {
   self.height = function (_) {
     if (!arguments.length) return height;
     height = _;
+    //LM: Size bug fix
     self.updateWindowSizes();
     return self;
   };
@@ -708,17 +710,14 @@ function TreeMap(htmlID) {
         .select(".nodeText")
         .style("font-size", function (d) {
           // LM: Fix Bug, the font size of the node text now is relative to the width of the node
-          // console.log(d);
-          const widthNodevw = d.dx * 100 / window.innerWidth;
-          // console.log('dx', d.dx);
           //LM: Now the values use k, m or b
-          const valueText = Math.abs(Number(d[labelValue])) >= 1.0e+9
+          const valueText = (Math.abs(Number(d[labelValue])) >= 1.0e+9
             ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+9 * 100) / 100).toFixed(2) + "B"
             : Math.abs(Number(d[labelValue])) >= 1.0e+6
               ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+6 * 100) / 100).toFixed(2) + "M"
               : Math.abs(Number(d[labelValue])) >= 1.0e+3
                 ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+3 * 100) / 100).toFixed(2) + "K"
-                : Math.abs(Number(d[labelValue]));
+                : Math.abs(Number(d[labelValue])))+"";
 
           let fontSize = 17;
           // console.log('fontSize*length', fontSize * 2 * valueText.length);
@@ -751,13 +750,13 @@ function TreeMap(htmlID) {
         .html(function (d) {
           // return filter(d.children) ? null : d[labelValue];
           //LM: Now the values use k, m or b
-          return Math.abs(Number(d[labelValue])) >= 1.0e+9
+          return (Math.abs(Number(d[labelValue])) >= 1.0e+9
             ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+9* 100) / 100).toFixed(2) + "B"
             : Math.abs(Number(d[labelValue])) >= 1.0e+6
               ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+6* 100) / 100).toFixed(2) + "M"
               : Math.abs(Number(d[labelValue])) >= 1.0e+3
                 ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+3* 100) / 100).toFixed(2) + "K"
-                : Math.abs(Number(d[labelValue]));
+                : Math.abs(Number(d[labelValue])))+"";
         });
     }
   }

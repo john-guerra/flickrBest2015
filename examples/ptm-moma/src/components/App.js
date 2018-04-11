@@ -14,7 +14,7 @@ class App extends Component {
       {name: 'Department',},
       {name: 'Classification'}
     ];
-    await initPhotoTreeMap(firstProperties);
+    initPhotoTreeMap(firstProperties);
     this.setState({started: true, groupingProperties:firstProperties});
   };
 
