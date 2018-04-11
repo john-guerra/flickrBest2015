@@ -2,7 +2,7 @@
 
 /*jslint browser: true, indent: 2 */
 
-//v0.4.2
+//v0.4.3
 function TreeMap(htmlID) {
   "use strict";
   let self = this,
@@ -721,11 +721,11 @@ function TreeMap(htmlID) {
 
         let fontSize = 17;
         // console.log('fontSize*length', fontSize * 2 * valueText.length);
-        if (fontSize * valueText.length * 2 > d.dx)
+        if (fontSize * (valueText.length + d[label] ? d[label].length : 0) > d.dx)
           fontSize = 14;
-        if (fontSize * valueText.length * 2 > d.dx)
+        if (fontSize * (valueText.length + d[label] ? d[label].length : 0) > d.dx)
           fontSize = 10;
-        if (fontSize * valueText.length * 2 > d.dx)
+        if (fontSize * (valueText.length + d[label] ? d[label].length : 0) > d.dx)
           fontSize = d.dx / (2 * valueText.length + d[label] ? d[label].length : 0);
         // const fs = (d.value + "").length < 3 ? (d.dx / 2 * 3) / (d.value + "").length : (d.value + "").length < 6 ?;
         return fontSize + "px";
