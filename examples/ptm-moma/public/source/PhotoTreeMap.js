@@ -2,6 +2,7 @@
 
 /*jslint browser: true, indent: 2 */
 
+//v0.4.5
 function TreeMap(htmlID) {
   "use strict";
   let self = this,
@@ -116,12 +117,16 @@ function TreeMap(htmlID) {
   self.width = function (_) {
     if (!arguments.length) return width;
     width = _;
+    //LM: Size bug fix
+    self.updateWindowSizes();
     return self;
   };
 
   self.height = function (_) {
     if (!arguments.length) return height;
     height = _;
+    //LM: Size bug fix
+    self.updateWindowSizes();
     return self;
   };
 
@@ -282,7 +287,6 @@ function TreeMap(htmlID) {
   self.updateWindowSizes = function () {
     width = (self.width() !== undefined ? self.width() : document.getElementById(htmlID.slice(1)).offsetWidth) - self.margin.left - self.margin.right;
     height = (self.height() !== undefined ? self.height() : $(window).height()) - self.margin.top - self.margin.bottom;
-
     x.domain([0, width])
       .range([0, width]);
 
@@ -693,6 +697,11 @@ function TreeMap(htmlID) {
   } //nodeExit
 
   function nodeAppendText(sel) {
+    // console.log(sel.select(".nodeText"));
+    if (sel.select(".nodeText")[0].length > 1) {
+      sel.select(".nodeText").remove();
+      // console.log(sel.select(".nodeText"));
+    }
     sel
       .filter(showLabel)
       .append("div")
@@ -701,9 +710,25 @@ function TreeMap(htmlID) {
       .select(".nodeText")
       .style("font-size", function (d) {
         // LM: Fix Bug, the font size of the node text now is relative to the width of the node
-        // console.log(d);
-        const per = window.innerWidth / d.dx;
-        return ((d.value + "").length)/per + "vw";
+        //LM: Now the values use k, m or b
+        const valueText = (Math.abs(Number(d[labelValue])) >= 1.0e+9
+          ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+9 * 100) / 100).toFixed(2) + "B"
+          : Math.abs(Number(d[labelValue])) >= 1.0e+6
+            ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+6 * 100) / 100).toFixed(2) + "M"
+            : Math.abs(Number(d[labelValue])) >= 1.0e+3
+              ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+3 * 100) / 100).toFixed(2) + "K"
+              : Math.abs(Number(d[labelValue]))) + "";
+
+        let fontSize = 17;
+        // console.log('fontSize*length', fontSize * 2 * valueText.length);
+        if (fontSize * (valueText.length + d[label] ? d[label].length : 0)* 2 > d.dx)
+          fontSize = 14;
+        if (fontSize * (valueText.length + d[label] ? d[label].length : 0)* 2 > d.dx)
+          fontSize = 10;
+        if (fontSize * (valueText.length + d[label] ? d[label].length : 0)* 2 > d.dx)
+          fontSize = d.dx / (2*(  valueText.length + d[label] ? d[label].length : 0));
+        // const fs = (d.value + "").length < 3 ? (d.dx / 2 * 3) / (d.value + "").length : (d.value + "").length < 6 ?;
+        return fontSize + "px";
       });
     if (showNodeTextTitle) {
       sel.select(".nodeText")
@@ -720,8 +745,14 @@ function TreeMap(htmlID) {
         .attr("class", "nodeTextValue")
         .html(function (d) {
           // return filter(d.children) ? null : d[labelValue];
-          //LM: Now the values have dots as separators every three digits, ie: 123.123.567
-          return (d[labelValue]+"").replace(new RegExp("^(\\d{" + ((d[labelValue]+"").length%3?(d[labelValue]+"").length%3:0) + "})(\\d{3})", "g"), "$1 $2").replace(/(\d{3})+?/gi, "$1 ").trim().replace(/\s/g, '.');
+          //LM: Now the values use k, m or b
+          return (Math.abs(Number(d[labelValue])) >= 1.0e+9
+            ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+9 * 100) / 100).toFixed(2) + "B"
+            : Math.abs(Number(d[labelValue])) >= 1.0e+6
+              ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+6 * 100) / 100).toFixed(2) + "M"
+              : Math.abs(Number(d[labelValue])) >= 1.0e+3
+                ? parseFloat(Math.round(Math.abs(Number(d[labelValue])) / 1.0e+3 * 100) / 100).toFixed(2) + "K"
+                : Math.abs(Number(d[labelValue]))) + "";
         });
     }
   }
