@@ -2,7 +2,7 @@
 
 /*jslint browser: true, indent: 2 */
 
-//v0.3
+//v0.4
 function TreeMap(htmlID) {
   "use strict";
   let self = this,
@@ -117,12 +117,14 @@ function TreeMap(htmlID) {
   self.width = function (_) {
     if (!arguments.length) return width;
     width = _;
+    self.updateWindowSizes();
     return self;
   };
 
   self.height = function (_) {
     if (!arguments.length) return height;
     height = _;
+    self.updateWindowSizes();
     return self;
   };
 
@@ -283,7 +285,6 @@ function TreeMap(htmlID) {
   self.updateWindowSizes = function () {
     width = (self.width() !== undefined ? self.width() : document.getElementById(htmlID.slice(1)).offsetWidth) - self.margin.left - self.margin.right;
     height = (self.height() !== undefined ? self.height() : $(window).height()) - self.margin.top - self.margin.bottom;
-
     x.domain([0, width])
       .range([0, width]);
 
