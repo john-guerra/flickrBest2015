@@ -21,6 +21,7 @@ class PhotoTreeMap extends Component {
   render() {
     return (
       <div className={"PhotoTreeMap " + (this.state.started ? "started" : "")}>
+        <div id="dnd-tree-container"/>
         <div className="col1 paper paper__no-padding">
             <div id="breadcrumbs"/>
             <div id="target"/>

@@ -1,0 +1,38 @@
+.dndTree .node {
+  cursor: pointer;
+}
+
+.dndTree .overlay{
+  background-color:#EEE;
+}
+
+.dndTree .node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.dndTree .node text {
+  font-size:10px;
+  font-family:sans-serif;
+}
+
+.dndTree .link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.dndTree .templink {
+  fill: none;
+  stroke: red;
+  stroke-width: 3px;
+}
+
+.dndTree .ghostCircle.show{
+  display:block;
+}
+
+.dndTree .ghostCircle, .activeDrag .ghostCircle{
+  display: none;
+}

@@ -1,7 +1,7 @@
 const d3 = window.d3;
 let photoTreemap;
 let mainTree;
-const file = './data/moma.csv';
+const file = './data/prueba.csv';
 
 //Init the photoTreeMap
 export async function initPhotoTreeMap(groupingProperties) {
@@ -50,8 +50,16 @@ export async function updatePhotoTreeMap(groupingProperties) {
   mainTree = {};
   mainTree.values = await createHierarchyWithFile(file, groupingProperties);
   mainTree.key = 'MOMA';
+  mainTree.label = 'MOMA';
   await fixNode(mainTree);
   photoTreemap.update(mainTree);
+  console.log(mainTree);
+  // window.dndTree(mainTree);
+}
+
+export function updateDNDTree( tree ){
+  document.getElementById("tree-container").remove(document.getElementsByClassName("overlay"));
+  window.dndTree(mainTree);
 }
 //Show notification
 export function showNotification(message) {
