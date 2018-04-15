@@ -29,7 +29,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 const h = {label:'a',children:[{label:'b'}, {label:'c'}]};
 
 // Get JSON data
-dndTree = function( hierarchy)  {
+dndTree = function( hierarchy, width, height)  {
 
   // Calculate total nodes, max label length
   var totalNodes = 0;
@@ -41,13 +41,12 @@ dndTree = function( hierarchy)  {
   var panSpeed = 200;
   var panBoundary = 20; // Within 20px from edges will pan when dragging.
   // Misc. variables
-  var i = 0;
   var duration = 750;
   var root;
 
   // size of the diagram
-  var viewerWidth = $(document).width();
-  var viewerHeight = $(document).height();
+  var viewerWidth = width || $(document).width();
+  var viewerHeight = height || $(document).height();
 
   var tree = d3.layout.tree()
       .size([viewerHeight, viewerWidth]);

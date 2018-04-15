@@ -26,9 +26,10 @@ class Configurations extends Component {
   }
   componentDidMount = async () => {
     const firstProperties = [
-      {name: 'Nationality', fun: d => d.Nationality.split(')')[0].slice(1, d.Nationality.split(')')[0].length - 1)},
+      {name: 'Nationality', fun: d => d.Nationality.split(')')[0].slice(1, d.Nationality.split(')')[0].length)},
       {name: 'Department',},
-      {name: 'Classification'}
+      {name: 'Classification'},
+      {name: 'Gender', fun: d => d.Gender.split(')')[0].slice(1, d.Gender.split(')')[0].length)}
     ];
     this.props.init(firstProperties);
     this.setState({groupingProperties:firstProperties});

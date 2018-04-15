@@ -1,4 +1,4 @@
-.App{
+.App {
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -7,7 +7,7 @@
   height: fit-content;
 }
 
-.App>.titleContainer{
+.App > .titleContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,84 +16,131 @@
   text-align: center;
   height: 17vh;
 }
-.App>.titleContainer>.title {
+
+.App > .titleContainer > .title {
   font-size: 5vw;
   width: 45vw;
   color: #333333;
 }
-.App>.titleContainer>.subtitle1 {
+
+.App > .titleContainer > .subtitle1 {
   font-size: 1vw;
   color: #333333;
   margin: 5px;
 }
-.App>.titleContainer>.subtitle2 {
+
+.App > .titleContainer > .subtitle2 {
   font-family: "Open Sans", sans-serif;
   width: 40vw;
   /*font-style: italic;*/
   font-size: 1.5vw;
 }
 
-.App>.info{
-  height: 45vh;
+.App > .info {
+  height: 60vh;
   width: 70vw;
   margin: 2vh 0 5vh 0;
-  display: grid;
-  grid-template-rows: 10vh 35vh;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 5vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
-.App>.info>.title{
+
+.App > .info > .info--col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 45%;
+  height: 100%;
+}
+.App > .info > .info--col2 {
+  justify-content: space-around;
+}
+
+.App > .info > .info--col > .title {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  grid-row: 1 / span 1;
-  grid-column: 1 / span 1;
+  width: 100%;
   font-size: 3vw;
+  margin-bottom: 15px;
 }
-.App>.info>.text{
-  grid-row: 2 / span 1;
-  grid-column: 1 / span 1;
+
+.App > .info > .info--col > .text {
   font-size: 1.3vw;
   text-align: justify;
   font-family: "Open Sans", sans-serif;
   color: #7a7a7a;
   line-height: 1.7;
 }
-.App>.info>.media{
-  /*height: 60vh;*/
-  /*max-width: 35vw;*/
-  grid-row: 1 / span 2;
-  grid-column: 2 / span 1;
+
+.App > .info > .info--col > .media {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   margin-top: 3vh;
 }
-.App>.info>.media>img{
+.App > .info > .info--col > .button {
+  background-color: rgb(0, 188, 212);
+  color: #fff;
+  transition: box-shadow .2s;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-radius: 2px;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-decoration: none;
+  outline: 0;
+  box-sizing: inherit;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  width: fit-content;
+}
+.App > .info > .info--col > .button:hover {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .39);
+}
+.App > .info > .info--col > .media > img {
   max-width: 100%;
 }
 
-.App>.footer{
+.App > .footer {
   color: #7a7a7a;
-  margin: 4vh 0 2vh 0;
+  margin: 4vh 0 1vh 0;
 }
-.App a{
+
+.App a {
   text-decoration: none;
   color: rgb(0, 188, 212);
 }
 
 @media screen and (max-width: 900px) {
-  .App>.titleContainer>.title {
+  .App > .titleContainer > .title {
     font-size: 5vw;
     width: 45vw;
     color: #333333;
   }
-  .App>.titleContainer>.subtitle1 {
+
+  .App > .titleContainer > .subtitle1 {
     font-size: 2vw;
     color: #333333;
   }
-  .App>.titleContainer>.subtitle2 {
+
+  .App > .titleContainer > .subtitle2 {
     font-family: "Open Sans", sans-serif;
     width: 40vw;
     font-size: 3vw;
@@ -101,27 +148,29 @@
 }
 
 @media screen and (max-width: 700px) {
-  .App>.info{
-    height: 65vh;
-    grid-template-rows: 10vh 15vh 40vh;
-    grid-template-columns: 1fr;
+  .App > .info {
+    flex-direction: column;
   }
-  .App>.info>.title{
-    grid-row: 1 / span 1;
-    grid-column: 1 / span 1;
+  .App > .info > .info--col {
+    width: 70%;
+  }
+  .App > .info > .info--col2 {
+    justify-content: flex-start;
+  }
+
+  .App > .info > .title {
     font-size: 3.5vw;
   }
-  .App>.info>.text{
-    grid-row: 2 / span 1;
-    grid-column: 1 / span 1;
+
+  .App > .info > .text {
     font-size: 2vw;
   }
-  .App>.info>.media{
-    grid-row: 3 / span 1;
-    grid-column: 1 / span 1;
+
+  .App > .info > .media {
     margin-top: 2vh;
   }
-  .App>.info>.media>img{
+
+  .App > .info > .media > img {
     max-width: 100%;
   }
 }

@@ -1,6 +1,6 @@
 # PhotoTreemap
 
-A library for displaying groups of photos with statistics on a TreeMap.
+A library for displaying groups of photos based on its metadata on a TreeMap.
 
 # Examples
  

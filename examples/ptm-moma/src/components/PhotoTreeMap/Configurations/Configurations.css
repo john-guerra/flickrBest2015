@@ -1,13 +1,11 @@
 .Configurations{
-  margin: 0 0 20px 15px;
-}
-.Configurations .config-item{
-  padding-left: 6px;
-  margin: 8px 0;
-  height: 1.5em;
+  margin: 0 0 0 15px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  color: #7a7a7a;
+}
+.Configurations> .list{
+  overflow-y: scroll;
+}
+.Configurations.paper{
+  padding-right: 0!important;
 }

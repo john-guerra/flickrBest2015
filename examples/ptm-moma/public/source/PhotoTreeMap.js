@@ -19,9 +19,7 @@ function TreeMap(htmlID) {
     accumulateValue = false,
     value = "value",
     labelValue = "value",
-    showLabel = function (d) {
-      return true;
-    },
+    showLabel = true,
     label = "label",
     sort = value,
     showAsGrid = false,
@@ -626,7 +624,7 @@ function TreeMap(htmlID) {
       let nodeDiv = d3.select(this);
       nodeDiv.append("div")
         .attr("class", "nodeBG");
-      nodeDiv.filter(showLabel)
+      nodeDiv.filter(()=>self.showLabel())
         .call(nodeAppendText);
     });
     if (self.animationDuration()) {
@@ -652,13 +650,13 @@ function TreeMap(htmlID) {
     //Delete the labels from the ones that don't need it
     sel
       .filter(function (d) {
-        return !showLabel(d);
+        return ()=>!self.showLabel();
       })
       .select(".nodeText")
       .remove();
     //Append the labels to the ones that need it
     sel
-      .filter(showLabel)
+      .filter(()=>self.showLabel())
       .select(".nodeText")
       .remove();
     sel
@@ -703,7 +701,7 @@ function TreeMap(htmlID) {
       // console.log(sel.select(".nodeText"));
     }
     sel
-      .filter(showLabel)
+      .filter(()=>showLabel)
       .append("div")
       .attr("class", "nodeText");
     if (showNodeTextTitle) {

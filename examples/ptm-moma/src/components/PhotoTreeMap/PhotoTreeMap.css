@@ -11,7 +11,7 @@
 .PhotoTreeMap.started{
   opacity: 1;
   width: 90vw;
-  height: 80vh;
+  height: fit-content;
 }
 .PhotoTreeMap>.col1>#breadcrumbs{
   height: 20px;
@@ -49,4 +49,13 @@
   font-weight: bold;
   margin-bottom: 15px;
   color: #333333;
+}
+.PhotoTreeMap ::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  border: 2px solid #ccc;
+  background: #ccc;
+  /*-webkit-box-shadow: inset 0 0 2px rgba(0,0,0,.5);*/
+}
+.PhotoTreeMap ::-webkit-scrollbar {
+  width: 8px;
 }
