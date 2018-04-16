@@ -2,6 +2,7 @@ const d3 = window.d3;
 let photoTreemap;
 let mainTree;
 const file = './data/moma.csv';
+let data = null;
 const config = {
   width: window.innerWidth * 0.7,
   height: (window.innerHeight * 0.8) - 20,
@@ -37,8 +38,32 @@ export async function initPhotoTreeMap(groupingProperties) {
     .useShannon(config.userShannon);
   // console.log(config);
   //Create the hierarchy and update
+  await readFile(file);
   await updatePhotoTreeMap(groupingProperties ? groupingProperties : oldGroupingProperties);
   updateDNDTree(mainTree);
+}
+
+export async function readFile (file){
+  return new Promise((resolve, reject) => {
+    d3.csv(file, (csv_data) => {
+      data = csv_data;
+      resolve(csv_data);
+    })
+  });
+};
+
+export async function createHierarchyWithGroupingProperties (groupingProperties) {
+  return new Promise((resolve, reject) => {
+    let nested_data = d3.nest();
+    groupingProperties.forEach(c => {
+      nested_data = nested_data.key(d => c.fun ? c.fun(d) : d[c.name]);
+    });
+    // console.log(csv_data)
+    if (!data)
+      readFile(file);
+    nested_data = nested_data.entries(data.filter(c => c.ThumbnailURL));
+    resolve(nested_data);
+  });
 }
 
 export async function createHierarchyWithFile(file, groupingProperties) {
@@ -72,7 +97,7 @@ export async function fixNode(node) {
 
 export async function updatePhotoTreeMap(groupingProperties) {
   mainTree = {};
-  mainTree.values = await createHierarchyWithFile(file, groupingProperties);
+  mainTree.values = await createHierarchyWithGroupingProperties(groupingProperties);
   mainTree.key = 'MOMA';
   mainTree.label = 'MOMA';
   await fixNode(mainTree);
