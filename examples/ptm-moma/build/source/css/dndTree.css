@@ -1,0 +1,38 @@
+#dnd-tree-container .node {
+  cursor: pointer;
+}
+
+#dnd-tree-container .overlay {
+  background-color: #FAFAFA;
+}
+
+#dnd-tree-container .node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+#dnd-tree-container .node text {
+  font-size: 10px;
+  font-family: sans-serif;
+}
+
+#dnd-tree-container .link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+#dnd-tree-container .templink {
+  fill: none;
+  stroke: red;
+  stroke-width: 3px;
+}
+
+#dnd-tree-container .ghostCircle.show {
+  display: block;
+}
+
+#dnd-tree-container .ghostCircle, .activeDrag .ghostCircle {
+  display: none;
+}
