@@ -20,7 +20,7 @@ This [Basic Example](https://john-guerra.github.io/photoTreemap/examples/basic/i
 
 [MOMA Navigator](https://john-guerra.github.io/photoTreemap/examples/ptm-moma/build/index.html) create a PhotoTreeMap to navigate around the artworks of [The Museum of Modern Art (MOMA)](http://www.moma.org/) based in its characteristics. This example require a high configuration and load 131k records representing the MOMA's artworks. The source code is in [examples/ptm-moma](https://github.com/john-guerra/photoTreemap/tree/master/examples/ptm-moma).
 
-![Instagram Trends](https://github.com/john-guerra/photoTreemap/blob/master/examples/demos/PTMInstagramTrends.gif?raw=true "PhotoTreeMap Instagram Trends")
+![MOMA Navigator](https://github.com/john-guerra/photoTreemap/blob/master/examples/demos/PTMMomaNavigator.gif?raw=true "PhotoTreeMap MOMA Navigator")
 
 # Usage
 
